@@ -1,5 +1,12 @@
 <template lang="">
-    <div>index</div>
+    <div>
+        <main-page>
+            <card>
+                <namecard>dashb</namecard>
+                <alert>hell</alert>
+            </card>
+        </main-page>
+    </div>
 </template>
 <script>
 export default {};
