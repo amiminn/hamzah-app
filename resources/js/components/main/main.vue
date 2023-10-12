@@ -16,7 +16,6 @@ export default {
     components: { Navbar, Asidebar },
     mounted() {
         initFlowbite();
-        console.log("main page");
     },
 };
 </script>

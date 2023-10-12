@@ -1,3 +1,153 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+    font-family: Jost;
+    src: url(fonts/Jost-Regular.ttf);
+}
+
+@layer components {
+    .card {
+        @apply my-2 w-full border-2 border-gray-700 border-dashed rounded-lg bg-white;
+    }
+    .card-body {
+        @apply p-4;
+    }
+    .form-input {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5;
+    }
+    :disabled,
+    .disabled {
+        @apply cursor-not-allowed !text-gray-600;
+    }
+    .btn {
+        @apply border focus:ring-4 focus:outline-none font-medium rounded text-sm px-8 py-2 text-center mr-2 mb-2 transition;
+    }
+    .btn-block {
+        @apply block w-full;
+    }
+    .btn-primary {
+        @apply text-blue-700 hover:bg-blue-800 hover:text-white border-blue-700 focus:ring-blue-300;
+    }
+    .btn-danger {
+        @apply text-red-700 hover:bg-red-800 hover:text-white border-red-700 focus:ring-red-300;
+    }
+    .btn-success {
+        @apply text-green-700 hover:bg-green-800 hover:text-white border-green-700 focus:ring-green-300;
+    }
+    .btn-sky {
+        @apply text-sky-700 hover:bg-sky-800 hover:text-white border-sky-700 focus:ring-sky-300;
+    }
+    .btn-dark {
+        @apply text-gray-700 hover:bg-gray-800 hover:text-white border-gray-700 focus:ring-gray-300;
+    }
+    .label,
+    label {
+        @apply block mb-2 text-sm font-semibold text-gray-700;
+    }
+    .form-input {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2;
+    }
+    .form-icon {
+        @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2;
+    }
+    .header-icon {
+        @apply absolute inset-y-0 text-gray-500 left-0 flex items-center px-2 pointer-events-none;
+    }
+    .form-file {
+        @apply block w-full text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none;
+    }
+    .badge {
+        @apply text-xs font-medium m-1 px-2.5 py-0.5 rounded;
+    }
+    .badge-primary {
+        @apply bg-blue-100 text-blue-800;
+    }
+    .badge-success {
+        @apply bg-green-100 text-green-800;
+    }
+    .badge-danger {
+        @apply bg-red-100 text-red-800;
+    }
+    .badge-sky {
+        @apply bg-sky-100 text-sky-800;
+    }
+    .material-input {
+        @apply block px-2 pb-2 pt-4 w-full text-sm text-gray-900 bg-transparent rounded border border-gray-300 appearance-none focus:outline-none focus:ring-1 focus:border-blue-600;
+    }
+    .material-label {
+        @apply absolute text-sm text-gray-500 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white px-2 peer-focus:px-2 peer-focus:text-blue-600 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-1;
+    }
+    hr {
+        @apply h-px my-2 bg-gray-300 border-0;
+    }
+    select {
+        @apply cursor-pointer;
+    }
+    .li-paginate {
+        @apply cursor-pointer flex items-center justify-center px-4 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-sky-800 hover:text-white;
+    }
+    .paginate-active {
+        @apply text-white bg-sky-800 border-2 border-sky-800;
+    }
+    th,
+    td {
+        @apply px-6 py-4;
+    }
+
+    .table-container {
+        @apply relative overflow-x-auto rounded;
+    }
+    .table {
+        @apply w-full text-sm text-left text-gray-500;
+    }
+    .thead {
+        @apply text-xs text-white uppercase bg-gray-800;
+    }
+    .tr {
+        @apply bg-white border-b;
+    }
+    .th {
+        @apply px-6 py-3;
+    }
+    .td {
+        @apply px-6 py-4;
+    }
+    .alert {
+        @apply p-4 my-4 text-sm text-yellow-800 rounded-lg bg-yellow-50;
+    }
+    .dark-text {
+        @apply text-gray-600;
+    }
+
+    .on {
+        @apply underline underline-offset-4 text-rose-400 font-bold;
+    }
+
+    .onred {
+        @apply underline underline-offset-4 text-rose-500;
+    }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}

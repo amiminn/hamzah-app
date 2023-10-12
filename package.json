@@ -18,12 +18,15 @@
         "@vitejs/plugin-vue": "^4.4.0",
         "animate.css": "^4.1.1",
         "crypto-js": "^4.1.1",
+        "feather-icons": "^4.29.1",
         "flowbite": "^1.8.1",
         "js-cookie": "^3.0.5",
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
         "qrcode": "^1.5.3",
         "sweetalert2": "^11.7.27",
+        "upload-js": "^2.24.3",
+        "vue-feather": "^2.0.0",
         "vuex": "^4.0.2"
     }
 }

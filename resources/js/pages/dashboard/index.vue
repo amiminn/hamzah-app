@@ -2,7 +2,7 @@
     <div>
         <main-page>
             <card>
-                <namecard>dashb</namecard>
+                <namecard>dashboard</namecard>
                 <alert>hell</alert>
             </card>
         </main-page>

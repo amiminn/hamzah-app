@@ -24,12 +24,9 @@
                                 ></path>
                             </svg>
                         </button>
-                        <a
-                            href="https://flowbite.com"
-                            class="flex ml-2 md:mr-24"
-                        >
+                        <Link href="/" class="flex ml-2 md:mr-24">
                             <img
-                                src="https://flowbite.com/docs/images/logo.svg"
+                                src="assets/main/resume.png"
                                 class="h-8 mr-3"
                                 alt="FlowBite Logo"
                             />
@@ -37,7 +34,7 @@
                                 class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap"
                                 >@microservice</span
                             >
-                        </a>
+                        </Link>
                     </div>
                     <div class="flex items-center">
                         <div class="flex items-center ml-3">
@@ -76,11 +73,19 @@
                                 </div>
                                 <ul class="py-1" role="none">
                                     <li>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href="/profile"
                                             class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                             role="menuitem"
-                                            >Settings</a
+                                            >Profile</Link
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            href="/"
+                                            class="block m-1 rounded px-4 py-2 text-sm bg-rose-100 text-gray-700 hover:bg-rose-400 hover:text-white"
+                                            role="menuitem"
+                                            >logout</a
                                         >
                                     </li>
                                 </ul>

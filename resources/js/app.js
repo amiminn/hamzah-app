@@ -1,6 +1,7 @@
 import "./bootstrap";
 import "animate.css";
 import "flowbite";
+import VueFeather from "vue-feather";
 import { createApp, h } from "vue";
 import { createInertiaApp, Link } from "@inertiajs/vue3";
 
@@ -26,6 +27,12 @@ createInertiaApp({
         app.component("alert", Alert);
         app.component("tag", Tag);
         app.component("trans", Trans);
+        app.component(VueFeather.name, VueFeather);
+
+        app.config.globalProperties.$url = "http://127.0.0.1:8000/";
+        app.config.globalProperties.$key = {
+            uploadJs: "public_12a1ydKBufjwc3sJ9bMrA5r8G5D9",
+        };
 
         app.config.globalProperties.$api = {
             auth: {
