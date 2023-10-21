@@ -2,16 +2,16 @@
     <main-page>
         <namecard>pengaturan aplikasi</namecard>
         <div class="grid grid-cols-2 gap-3">
-            <card>
-                <namecard>logo app</namecard>
-            </card>
-            <card>
-                <namecard>informasi app</namecard>
-            </card>
+            <updatelogo />
+            <Info />
         </div>
     </main-page>
 </template>
 <script>
-export default {};
+import Info from "./informasi.vue";
+import updatelogo from "./updatelogo.vue";
+export default {
+    components: { Info, updatelogo },
+};
 </script>
 <style lang=""></style>

@@ -12,6 +12,8 @@ import Alert from "./components/inc/alert.vue";
 import NameCard from "./components/inc/namecard.vue";
 import Tag from "./components/inc/tag.vue";
 import Trans from "./components/inc/transition.vue";
+import Acd from "./components/inc/accordion.vue";
+import Modal from "./components/inc/modal.vue";
 
 createInertiaApp({
     resolve: (name) => {
@@ -27,6 +29,8 @@ createInertiaApp({
         app.component("alert", Alert);
         app.component("tag", Tag);
         app.component("trans", Trans);
+        app.component("acd", Acd);
+        app.component("modal", Modal);
         app.component(VueFeather.name, VueFeather);
 
         app.config.globalProperties.$url = "http://127.0.0.1:8000/";

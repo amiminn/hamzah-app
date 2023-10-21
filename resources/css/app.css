@@ -122,7 +122,7 @@
     }
 
     .on {
-        @apply underline underline-offset-4 text-rose-400 font-bold;
+        @apply font-bold border-2 border-black bg-[#bad5f085];
     }
 
     .onred {

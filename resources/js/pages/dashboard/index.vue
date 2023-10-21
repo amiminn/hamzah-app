@@ -2,8 +2,7 @@
     <div>
         <main-page>
             <card>
-                <namecard>dashboard</namecard>
-                <alert>hell</alert>
+                <namecard>statistic dashboard</namecard>
             </card>
         </main-page>
     </div>

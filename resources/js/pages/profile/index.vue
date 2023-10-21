@@ -4,46 +4,25 @@
             <div class="grid gap-3">
                 <card>
                     <namecard>avatar</namecard>
-                    <input type="file" class="form-input" @change="preview" />
-                    <button class="btn btn-sky" @click="test">upd</button>
                 </card>
-                <card>
-                    <namecard>password</namecard>
-                </card>
+                <updatepassword />
             </div>
-            <card>
-                <namecard>informasi profile</namecard>
-            </card>
+            <informasiprofile />
         </div>
     </main-page>
 </template>
 <script>
-import { Upload } from "upload-js";
+import informasiprofile from "./informasiprofile.vue";
+import updatepassword from "./updatepassword.vue";
 export default {
+    components: { updatepassword, informasiprofile },
     data() {
         return {
             isFile: {},
         };
     },
     methods: {
-        up() {
-            const upload = Upload({ apiKey: this.$key.uploadJs }); // Get production API keys from Bytescale
-
-            const uploadFile = async (event) => {
-                try {
-                    const { fileUrl } = await upload.uploadFile(
-                        event.target.files[0],
-                        {
-                            onProgress: ({ progress }) =>
-                                console.log(`${progress}% complete`),
-                        }
-                    );
-                    alert(`File uploaded!\n${fileUrl}`);
-                } catch (e) {
-                    alert(`Error!\n${e.message}`);
-                }
-            };
-        },
+        up() {},
     },
 };
 </script>
