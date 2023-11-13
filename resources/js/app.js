@@ -14,6 +14,7 @@ import Tag from "./components/inc/tag.vue";
 import Trans from "./components/inc/transition.vue";
 import Acd from "./components/inc/accordion.vue";
 import Modal from "./components/inc/modal.vue";
+import Swal from "sweetalert2";
 
 createInertiaApp({
     resolve: (name) => {
@@ -42,6 +43,7 @@ createInertiaApp({
             auth: {
                 login: "/api/login",
             },
+            pengaturan: "/api/pengaturan",
         };
 
         app.config.globalProperties.$filters = {
@@ -50,6 +52,26 @@ createInertiaApp({
                 if (data == 0) return "Nonaktif";
             },
         };
+
+        app.config.globalProperties.$toast = (msg, icon = "success") => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "top-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                },
+            });
+
+            Toast.fire({
+                icon,
+                title: msg,
+            });
+        };
+
         app.use(store);
         app.use(plugin);
         app.mount(el);

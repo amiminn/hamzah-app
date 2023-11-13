@@ -5,7 +5,7 @@
             <div>
                 <label for="appname">nama aplikasi</label>
                 <input
-                    v-model="form.nameApp"
+                    v-model="$store.state.base.app.nama_app"
                     type="text"
                     id="appname"
                     class="form-input"
@@ -20,12 +20,28 @@ export default {
     data() {
         return {
             form: {
-                nameApp: null,
+                nama_app: null,
             },
         };
     },
     methods: {
-        async updateInformation() {},
+        async updateInformation() {
+            try {
+                let res = await axios.post(
+                    this.$api.pengaturan,
+                    this.$store.state.base.app
+                );
+                this.$store.commit("base/appConfig");
+                this.$toast(res.data.msg);
+            } catch (error) {}
+        },
+        async getData() {
+            let res = await axios.get(this.$api.pengaturan);
+            this.form = res.data;
+        },
+    },
+    mounted() {
+        this.getData();
     },
 };
 </script>

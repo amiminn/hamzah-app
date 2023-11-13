@@ -1,4 +1,5 @@
 import { createStore } from "vuex";
+import base from "./base";
 
 const store = createStore({
     state() {
@@ -9,6 +10,9 @@ const store = createStore({
                 "aria-controls": "logo-sidebar",
             },
         };
+    },
+    modules: {
+        base,
     },
 });
 

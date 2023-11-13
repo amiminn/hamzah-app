@@ -15,6 +15,11 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@easepick/bundle": "^1.2.1",
+        "@easepick/core": "^1.2.1",
+        "@easepick/datetime": "^1.2.1",
+        "@easepick/lock-plugin": "^1.2.1",
+        "@easepick/range-plugin": "^1.2.1",
         "@inertiajs/vue3": "^1.0.11",
         "@vitejs/plugin-vue": "^4.4.0",
         "animate.css": "^4.1.1",

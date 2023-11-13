@@ -32,7 +32,7 @@
                             />
                             <span
                                 class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap"
-                                >@microservice</span
+                                >{{ $store.state.base.app.nama_app }}</span
                             >
                         </Link>
                     </div>

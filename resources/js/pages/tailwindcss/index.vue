@@ -61,13 +61,33 @@
                     <tag>modal</tag>
                     <modal name="Example Modal"></modal>
                 </div>
+                <div>
+                    <tag>get App</tag>
+                    <input
+                        type="text"
+                        class="form-input"
+                        v-model="$store.state.base.app.nama_app"
+                    />
+                    <button @click="getApp()" class="btn btn-danger">
+                        get app
+                    </button>
+                </div>
+                <div>
+                    <tag>modal</tag>
+                    <modal name="Example Modal"></modal>
+                </div>
+                <div>
+                    <DPicker />
+                </div>
             </div>
         </card>
     </main-page>
 </template>
 
 <script>
+import DPicker from "./picker.vue";
 export default {
+    components: { DPicker },
     data() {
         return {
             warna: "#000",
@@ -77,6 +97,11 @@ export default {
     methods: {
         lihatPreview() {
             this.preview = this.warna;
+        },
+        getApp() {
+            console.log("get");
+            // console.log(this.$store.state.base.app);
+            // this.$store.commit("base/appConfig");
         },
     },
 };
