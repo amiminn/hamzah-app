@@ -52,6 +52,17 @@ export default {
             jumlah: 10,
         };
     },
+
+    methods: {
+        async getUser() {
+            let res = await axios.get(this.$api.users);
+            console.log(res.data);
+        },
+    },
+
+    mounted() {
+        this.getUser();
+    },
 };
 </script>
 <style lang=""></style>

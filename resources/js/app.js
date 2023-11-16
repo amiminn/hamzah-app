@@ -44,6 +44,7 @@ createInertiaApp({
                 login: "/api/login",
             },
             pengaturan: "/api/pengaturan",
+            users: "/api/users",
         };
 
         app.config.globalProperties.$filters = {

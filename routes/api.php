@@ -1,13 +1,16 @@
 <?php
 
 use App\Http\Controllers\api\PengaturanController;
-use App\Models\PengaturanModel;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\api\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("user", function () {
-    return PengaturanModel::get();
+
+Route::middleware([])->group(function () {
+    Route::apiResource("users", UserController::class);
+    Route::controller(UserController::class)->prefix("auth/user")->group(function () {
+        Route::get("/", "userAuth");
+        Route::get("update", "updateAuth");
+    });
 });
 
 Route::resource('pengaturan', PengaturanController::class)->only(["index", "store"]);
