@@ -5,18 +5,26 @@ namespace App\Services\Auth;
 use App\Models\User;
 use App\Services\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AuthService
 {
+    private static function setLogin($id)
+    {
+        Auth::loginUsingId($id);
+        $user = Auth::user();
+        $token = $user->createToken('ApiToken')->plainTextToken;
+        session(['token' => $token]);
+        return compact("user", "token");
+    }
+
     public function login(Request $request)
     {
         try {
             if (Auth::attempt(['username' => $request['username'], 'password' => $request['password']])) {
                 $user = Auth::user();
-                $token = $user->createToken('ApiToken')->plainTextToken;
-                session(['token' => $token]);
-                return compact("user", "token");
+                return self::setLogin($user->id);
             } else {
                 return Response::failed("Oops, ada kesalahan username atau password.");
             }
@@ -50,7 +58,7 @@ class AuthService
         }
     }
 
-    public static function logout($request)
+    public function logout(Request $request)
     {
         Auth::logout();
         $request->session()->invalidate();

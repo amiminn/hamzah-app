@@ -8,11 +8,19 @@
                 <div class="grid gap-5">
                     <div>
                         <label>username</label>
-                        <input type="text" class="form-input" />
+                        <input
+                            type="text"
+                            class="form-input"
+                            v-model="form.username"
+                        />
                     </div>
                     <div>
                         <label>password</label>
-                        <input type="password" class="form-input" />
+                        <input
+                            type="password"
+                            class="form-input"
+                            v-model="form.password"
+                        />
                     </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         login
@@ -26,9 +34,24 @@
 import LayoutLogin from "./layout.vue";
 export default {
     components: { LayoutLogin },
+    data() {
+        return {
+            form: {
+                username: "",
+                password: "",
+                _token: this.$page.props.csrf_token,
+            },
+        };
+    },
     methods: {
-        login() {
-            console.log("login");
+        async login() {
+            try {
+                let res = await axios.post(this.$api.auth.login, this.form);
+                this.$toast("login berhasil.");
+                location.replace("/");
+            } catch (error) {
+                this.$toast(error.response.data.msg, "error");
+            }
         },
     },
 };

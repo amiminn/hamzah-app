@@ -81,12 +81,15 @@
                                         >
                                     </li>
                                     <li>
-                                        <a
-                                            href="/"
-                                            class="block m-1 rounded px-4 py-2 text-sm bg-rose-100 text-gray-700 hover:bg-rose-400 hover:text-white"
-                                            role="menuitem"
-                                            >logout</a
-                                        >
+                                        <form action="logout" methods="post">
+                                            <button
+                                                type="submit"
+                                                class="block m-1 btn-block rounded px-4 py-2 text-sm bg-rose-100 text-gray-700 hover:bg-rose-400 hover:text-white"
+                                                role="menuitem"
+                                            >
+                                                logout
+                                            </button>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

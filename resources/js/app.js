@@ -41,7 +41,7 @@ createInertiaApp({
 
         app.config.globalProperties.$api = {
             auth: {
-                login: "/api/login",
+                login: "/login",
             },
             pengaturan: "/api/pengaturan",
             users: "/api/users",

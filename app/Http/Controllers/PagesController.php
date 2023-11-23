@@ -32,6 +32,11 @@ class PagesController extends Controller
         return Inertia::render("users/index");
     }
 
+    public function tambahusers()
+    {
+        return Inertia::render("users/adduser");
+    }
+
     public function tailwindcss()
     {
         return Inertia::render("tailwindcss/index");

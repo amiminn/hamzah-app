@@ -5,7 +5,7 @@
             <div>
                 <label for="nama">nama</label>
                 <input
-                    v-model="form.nama"
+                    v-model="form.name"
                     type="text"
                     class="form-input"
                     id="nama"
@@ -29,10 +29,13 @@ export default {
     data() {
         return {
             form: {
-                nama: null,
+                name: null,
                 email: null,
             },
         };
+    },
+    mounted() {
+        this.form = Auth.user;
     },
     methods: {
         async updateInformasiProfile() {},

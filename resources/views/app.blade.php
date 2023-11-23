@@ -9,7 +9,7 @@
           app_key : '{{ env("APP_KEY") }}'
         }
                 
-        @auth
+      @auth
         let user = {{ Js::from(auth()->user()) }};
         let token = {{ Js::from(session('token')) }};
         window.Auth = {
