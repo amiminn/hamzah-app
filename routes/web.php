@@ -17,6 +17,8 @@ Route::controller(PagesController::class)->group(function () {
         Route::get("/", "index");
         Route::get("profile", "profile");
         Route::get("users", "users");
+        Route::get("villa", "villa");
+        Route::get("transaksi", "transaksi");
         Route::get("tambah-users", "tambahusers");
         Route::get("pengaturan", "pengaturan");
         Route::get("tailwindcss", "tailwindcss");

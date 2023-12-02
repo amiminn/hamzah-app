@@ -19,3 +19,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::resource('pengaturan', PengaturanController::class)->only(["index", "store"]);
+
+Route::get("/", function () {
+    return now();
+});

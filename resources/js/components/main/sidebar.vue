@@ -30,6 +30,28 @@
                 </li>
                 <li>
                     <Link
+                        href="/villa"
+                        :class="{ on: $page.url === '/villa' }"
+                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                    >
+                        <vue-feather type="home"></vue-feather>
+
+                        <span class="ml-3">Villa</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        href="/transaksi"
+                        :class="{ on: $page.url === '/transaksi' }"
+                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                    >
+                        <vue-feather type="file"></vue-feather>
+
+                        <span class="ml-3">Transaksi</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link
                         href="/pengaturan"
                         :class="{ on: $page.url === '/pengaturan' }"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"

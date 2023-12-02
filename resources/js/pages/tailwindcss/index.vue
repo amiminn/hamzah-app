@@ -76,18 +76,14 @@
                     <tag>modal</tag>
                     <modal name="Example Modal"></modal>
                 </div>
-                <div>
-                    <DPicker />
-                </div>
+                <div></div>
             </div>
         </card>
     </main-page>
 </template>
 
 <script>
-import DPicker from "./picker.vue";
 export default {
-    components: { DPicker },
     data() {
         return {
             warna: "#000",

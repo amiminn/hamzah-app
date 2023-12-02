@@ -1,10 +1,11 @@
 <template lang="">
     <main-page>
         <card>
-            <namecard>kelola user</namecard>
             <div class="my-3 grid grid-cols-2 gap-3">
-                <div></div>
                 <div>
+                    <namecard>kelola user</namecard>
+                </div>
+                <div class="text-right">
                     <Link href="tambah-users" class="btn btn-sky"
                         >tambah user</Link
                     >

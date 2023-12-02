@@ -31,6 +31,14 @@ class PagesController extends Controller
     {
         return Inertia::render("users/index");
     }
+    public function villa()
+    {
+        return Inertia::render("villa/index");
+    }
+    public function transaksi()
+    {
+        return Inertia::render("transaksi/index");
+    }
 
     public function tambahusers()
     {
