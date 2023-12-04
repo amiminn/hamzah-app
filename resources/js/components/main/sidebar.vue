@@ -12,7 +12,7 @@
                         :class="{ on: $page.url === '/' }"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                     >
-                        <vue-feather type="box"></vue-feather>
+                        <vue-feather type="grid"></vue-feather>
                         <span class="ml-3">Dashboard</span>
                     </Link>
                 </li>
@@ -34,7 +34,7 @@
                         :class="{ on: $page.url === '/villa' }"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                     >
-                        <vue-feather type="home"></vue-feather>
+                        <vue-feather type="server"></vue-feather>
 
                         <span class="ml-3">Villa</span>
                     </Link>
@@ -45,7 +45,7 @@
                         :class="{ on: $page.url === '/transaksi' }"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                     >
-                        <vue-feather type="file"></vue-feather>
+                        <vue-feather type="folder"></vue-feather>
 
                         <span class="ml-3">Transaksi</span>
                     </Link>
@@ -56,7 +56,7 @@
                         :class="{ on: $page.url === '/pengaturan' }"
                         class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
                     >
-                        <vue-feather type="settings"></vue-feather>
+                        <vue-feather type="sliders"></vue-feather>
                         <span class="ml-3">Pengaturan</span>
                     </Link>
                 </li>

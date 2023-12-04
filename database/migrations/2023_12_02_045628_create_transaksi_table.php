@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('nama_customer');
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
+            $table->string('domisili')->nullable();
+            $table->string('provinsi')->nullable();
             $table->string('invoice');
             $table->string('jumlah_pembayaran')->default(0);
             $table->boolean('status')->default(0);

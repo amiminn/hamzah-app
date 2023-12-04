@@ -27,4 +27,16 @@ class TransaksiModel extends Model
             $model->invoice = Response::random(60);
         });
     }
+
+    public static function get_all_dates($start_date, $end_date)
+    {
+        $dates = array();
+        $current_date = strtotime($start_date);
+        $end_date = strtotime($end_date);
+        while ($current_date <= $end_date) {
+            $dates[] = date('Y-m-d', $current_date);
+            $current_date = strtotime('+1 day', $current_date);
+        }
+        return $dates;
+    }
 }

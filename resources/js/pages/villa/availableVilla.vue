@@ -1,6 +1,11 @@
 <template lang="">
     <card>
         <FullCalendar :options="calendarOptions" />
+        <div class="text-center mt-3" disable>
+            <button class="btn btn-sky btn-block">
+                lanjut (tambah) transaksi ({{ bookingDate }})
+            </button>
+        </div>
     </card>
 </template>
 <script>
@@ -11,6 +16,8 @@ export default {
     components: { FullCalendar },
     data() {
         return {
+            transaksi: false,
+            bookingDate: "",
             calendarOptions: {
                 plugins: [dayGridPlugin, interactionPlugin],
                 initialView: "dayGridMonth",
@@ -26,12 +33,17 @@ export default {
                     },
                 ],
                 select: this.selectDate,
+                unselect: this.unSelectDate,
             },
         };
     },
     methods: {
         selectDate(info) {
-            console.log(info);
+            this.transaksi = true;
+            this.bookingDate = info.startStr;
+        },
+        unSelectDate() {
+            this.transaksi = false;
         },
     },
     mounted() {},
@@ -40,5 +52,9 @@ export default {
 <style>
 .fc-event-title {
     color: !important black;
+}
+
+.fc .fc-highlight {
+    background: rgba(145, 255, 178, 0.3);
 }
 </style>

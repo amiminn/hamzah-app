@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama');
             $table->integer('harga')->default(0);
+            $table->string('primary')->default("bg-red-400");
             $table->text('fasilitas')->nullable();
             $table->timestamps();
         });
