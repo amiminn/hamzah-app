@@ -6,15 +6,29 @@
                     <label for="identitas"
                         >Identitas villa (nama villa, kamar, dll)</label
                     >
-                    <input type="text" id="identitas" class="form-input" />
+                    <input
+                        v-model="formData.nama"
+                        type="text"
+                        id="identitas"
+                        class="form-input"
+                    />
                 </div>
                 <div>
                     <label for="harga">Harga permalam</label>
-                    <input type="number" id="harga" class="form-input" />
+                    <input
+                        v-model="formData.harga"
+                        type="number"
+                        id="harga"
+                        class="form-input"
+                    />
                 </div>
                 <div>
                     <label for="warna">warna primary</label>
-                    <select id="warna" class="form-input">
+                    <select
+                        id="warna"
+                        class="form-input"
+                        v-model="formData.primary"
+                    >
                         <option selected disabled>pilih</option>
                         <option v-for="d in warna" :value="d.kode">
                             {{ d.nama }}
