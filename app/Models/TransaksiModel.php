@@ -24,7 +24,7 @@ class TransaksiModel extends Model
         static::creating(function ($model) {
             $model->id = Response::epoch();
             $model->kode_booking = Response::random(60);
-            $model->invoice = Response::random(60);
+            $model->invoice = "inv-" . date('Ymd') . "-" . Response::random(3);
         });
     }
 

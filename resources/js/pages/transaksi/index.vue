@@ -8,9 +8,6 @@
                         <th>no</th>
                         <th>villa_id</th>
                         <th>nama cs</th>
-                        <th>no hp</th>
-                        <th>email</th>
-                        <th>domisili</th>
                         <th>provinsi</th>
                         <th>jumlah pembayaran</th>
                         <th>status</th>
@@ -18,24 +15,67 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td>1</td>
+                    <tr
+                        v-for="(d, index) in dataTransaksi.data"
+                        :key="index"
+                        class="bg-white border-b hover:bg-gray-50"
+                    >
+                        <td>{{ index + 1 }}</td>
                         <td><div class="h-3 bg-red-400 rounded w-28"></div></td>
-                        <td>ilham</td>
-                        <td>-</td>
-                        <td>@ilham</td>
-                        <td>sleman</td>
-                        <td>Yogyakarta</td>
-                        <td>Rp 2.000</td>
-                        <td>lunas</td>
-                        <td>lihat</td>
+                        <td>{{ d.nama_customer }}</td>
+                        <td>{{ d.provinsi }}</td>
+                        <td>{{ d.jumlah_pembayaran }}</td>
+                        <td>{{ d.status ? "lunas" : "belum lunas" }}</td>
+                        <td>
+                            <Link
+                                class="text-blue-400"
+                                :href="'transaksi=' + d.id"
+                            >
+                                <vue-feather type="feather"></vue-feather>
+                            </Link>
+                        </td>
                     </tr>
                 </tbody>
             </table>
+            <div class="mt-4 text-right">
+                <paginate
+                    :limit="1"
+                    :data="dataTransaksi"
+                    @pagination-change-page="getResult"
+                ></paginate>
+            </div>
         </card>
     </main-page>
 </template>
 <script>
-export default {};
+import paginate from "../../components/pagination/TailwindPagination.vue";
+export default {
+    components: { paginate },
+    data() {
+        return {
+            dataTransaksi: [],
+        };
+    },
+    methods: {
+        async getData(page = 1) {
+            try {
+                let res = await axios.get(
+                    "/api" + this.$page.url + "?page=" + page
+                );
+                this.dataTransaksi = res.data;
+            } catch (error) {}
+        },
+        loadPage(page) {
+            this.getData(page);
+        },
+
+        getResult(page) {
+            this.loadPage(page);
+        },
+    },
+    mounted() {
+        this.getData();
+    },
+};
 </script>
 <style lang=""></style>

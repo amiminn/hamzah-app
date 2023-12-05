@@ -13,7 +13,7 @@ class VillaModel extends Model
     protected $guarded = [];
 
     protected $casts = [
-        'fasilitas' => 'array',
+        // 'fasilitas' => 'array',
     ];
 
     protected static function boot()

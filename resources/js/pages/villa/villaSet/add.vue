@@ -3,7 +3,9 @@
         <form @submit.prevent="addVilla">
             <div class="grid gap-3">
                 <div>
-                    <label for="identitas">Identitas villa</label>
+                    <label for="identitas"
+                        >Identitas villa (nama villa, kamar, dll)</label
+                    >
                     <input type="text" id="identitas" class="form-input" />
                 </div>
                 <div>
@@ -14,8 +16,8 @@
                     <label for="warna">warna primary</label>
                     <select id="warna" class="form-input">
                         <option selected disabled>pilih</option>
-                        <option value="bg-red-400 h-3">
-                            merah <span class="bg-red-400 h-3 w-3"></span>
+                        <option v-for="d in warna" :value="d.kode">
+                            {{ d.nama }}
                         </option>
                     </select>
                 </div>
@@ -28,10 +30,40 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            warna: [],
+            formData: {
+                nama: null,
+                harga: null,
+                primary: null,
+            },
+        };
+    },
     methods: {
-        addVilla() {
-            console.log("villa add");
+        async addVilla() {
+            try {
+                let res = await axios.post(this.$api.villa, this.formData);
+                console.log(res.data);
+            } catch (error) {
+                console.log(error);
+            }
         },
+        fullWarna() {
+            this.warna = [
+                {
+                    nama: "merah",
+                    kode: "bg-red-400",
+                },
+                {
+                    nama: "biru",
+                    kode: "bg-blue-400",
+                },
+            ];
+        },
+    },
+    mounted() {
+        this.fullWarna();
     },
 };
 </script>

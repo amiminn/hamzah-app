@@ -1,11 +1,26 @@
 <template lang="">
     <card>
-        <FullCalendar :options="calendarOptions" />
-        <div class="text-center mt-3" disable>
-            <button class="btn btn-sky btn-block">
-                lanjut (tambah) transaksi ({{ bookingDate }})
+        <div class="flex justify-end mb-2">
+            <button
+                v-if="!bookingDate"
+                class="border flex gap-x-3 rounded px-6 py-2 text-slate-700 cursor-not-allowed"
+            >
+                <img
+                    src="assets/icon/warning_738884.png"
+                    alt="warning"
+                    class="w-5"
+                />
+                lanjut (tambah) transaksi
             </button>
+            <Link
+                :href="'transaksi-baru=' + bookingDate"
+                v-if="bookingDate"
+                class="border rounded px-6 py-2 text-white bg-sky-950"
+            >
+                lanjut (tambah) transaksi
+            </Link>
         </div>
+        <FullCalendar :options="calendarOptions" />
     </card>
 </template>
 <script>
@@ -25,25 +40,29 @@ export default {
                 events: [
                     {
                         title: "Terbooking",
-                        start: "2023-12-05",
-                        // end: "2023-12-07",
+                        start: "2023-12-07",
+                        end: "2023-12-09",
                         classNames: [
                             "text-white bg-red-400 border-none font-bold pl-2 py-1",
                         ],
                     },
                 ],
                 select: this.selectDate,
-                unselect: this.unSelectDate,
+                // unselect: this.unSelectDate,
             },
         };
     },
     methods: {
         selectDate(info) {
             this.transaksi = true;
-            this.bookingDate = info.startStr;
+            this.bookingDate = JSON.stringify({
+                endStr: info.endStr,
+                startStr: info.startStr,
+            });
         },
         unSelectDate() {
             this.transaksi = false;
+            this.bookingDate = null;
         },
     },
     mounted() {},

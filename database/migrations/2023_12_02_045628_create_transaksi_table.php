@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('villa_id')->nullable();
             $table->string('kode_booking')->nullable();
-            $table->text('booking_date');
+            $table->json('booking_date');
             $table->string('nama_customer');
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
             $table->string('domisili')->nullable();
             $table->string('provinsi')->nullable();
             $table->string('invoice');
+            $table->integer('harga_asli')->default(0);
             $table->string('jumlah_pembayaran')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();

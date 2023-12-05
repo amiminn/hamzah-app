@@ -39,6 +39,10 @@ class PagesController extends Controller
     {
         return Inertia::render("transaksi/index");
     }
+    public function transaksibaru($fullDate)
+    {
+        return Inertia::render("villa/formTransaksi", compact("fullDate"));
+    }
 
     public function tambahusers()
     {
