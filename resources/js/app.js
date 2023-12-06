@@ -49,6 +49,7 @@ createInertiaApp({
             users: "/api/users",
             transaksi: "/api/transaksi",
             villa: "/api/villa",
+            transaksi_date: "/api/transaksi-date",
         };
 
         app.config.globalProperties.$filters = {

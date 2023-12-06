@@ -28,4 +28,11 @@ class TransaksiController extends Controller
     {
         return TransaksiModel::find($id);
     }
+
+    public function dateTransaksi(Request $request)
+    {
+        return collect(TransaksiModel::get())->map(function ($data) {
+            return collect($data->only(["nama_customer", "booking_date"]))->put("datavilla", $data->villa()->get(["nama", "primary"]));
+        });
+    }
 }

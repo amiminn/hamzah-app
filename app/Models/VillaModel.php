@@ -24,4 +24,9 @@ class VillaModel extends Model
             $model->id = Response::epoch();
         });
     }
+
+    public function transaksi()
+    {
+        return $this->belongsTo(TransaksiModel::class, 'id', 'villa_id');
+    }
 }

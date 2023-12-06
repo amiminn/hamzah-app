@@ -28,6 +28,11 @@ class TransaksiModel extends Model
         });
     }
 
+    public function villa()
+    {
+        return $this->hasOne(VillaModel::class, "id", "villa_id");
+    }
+
     public static function get_all_dates($start_date, $end_date)
     {
         $dates = array();

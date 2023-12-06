@@ -64,8 +64,14 @@ export default {
             this.transaksi = false;
             this.bookingDate = null;
         },
+        async getTransaksiDate() {
+            let res = await axios.get(this.$api.transaksi_date);
+            console.log(res.data);
+        },
     },
-    mounted() {},
+    mounted() {
+        this.getTransaksiDate();
+    },
 };
 </script>
 <style>
