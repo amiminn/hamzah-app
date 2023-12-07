@@ -28,4 +28,9 @@ class VillaController extends Controller
     {
         return VillaModel::find($id);
     }
+
+    public function listvilla(Request $request)
+    {
+        return VillaModel::get(["id", "nama", "harga", "primary"]);
+    }
 }

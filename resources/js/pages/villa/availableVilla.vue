@@ -1,5 +1,6 @@
 <template lang="">
     <card>
+        <warnavilla></warnavilla>
         <div class="flex justify-end mb-2">
             <button
                 v-if="!bookingDate"
@@ -37,16 +38,7 @@ export default {
                 plugins: [dayGridPlugin, interactionPlugin],
                 initialView: "dayGridMonth",
                 selectable: true,
-                events: [
-                    {
-                        title: "Terbooking",
-                        start: "2023-12-07",
-                        end: "2023-12-09",
-                        classNames: [
-                            "text-white bg-red-400 border-none font-bold pl-2 py-1",
-                        ],
-                    },
-                ],
+                events: [],
                 select: this.selectDate,
                 // unselect: this.unSelectDate,
             },
@@ -66,7 +58,21 @@ export default {
         },
         async getTransaksiDate() {
             let res = await axios.get(this.$api.transaksi_date);
-            console.log(res.data);
+            let dataEvent = res.data;
+
+            this.calendarOptions.events = dataEvent.map((data) => {
+                let resdata = {
+                    title: data.nama_customer,
+                    start: data.booking_date.startStr,
+                    end: data.booking_date.endStr,
+                    classNames: [
+                        data.datavilla.primary +
+                            " text-white border-none font-bold pl-2 py-1",
+                    ],
+                };
+
+                return resdata;
+            });
         },
     },
     mounted() {

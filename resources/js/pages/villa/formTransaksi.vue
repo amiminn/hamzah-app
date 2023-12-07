@@ -8,19 +8,24 @@
                 <div class="mb-5">
                     <kembali></kembali>
                 </div>
+                <warnavilla></warnavilla>
                 <form @submit.prevent="submitForm">
                     <div class="grid sm:xl:grid-cols-2 gap-3">
                         <div>
                             <label for="villa"
-                                >pilih villa_id (idenditas villa, kamar,
-                                dll)</label
+                                >pilih villa(idenditas villa, kamar, dll)</label
                             >
-                            <input
-                                v-model="formData.villa_id"
-                                type="text"
+                            <select
                                 id="villa"
                                 class="form-input"
-                            />
+                                @change="onChange($event)"
+                                v-model="formData.villa_id"
+                            >
+                                <option selected disabled>pilih</option>
+                                <option v-for="d in listVilla" :value="d.id">
+                                    {{ d.nama }}
+                                </option>
+                            </select>
                         </div>
                         <div>
                             <label for="nama">Nama Customer</label>
@@ -131,6 +136,8 @@ export default {
                 harga_asli: 0,
                 jumlah_pembayaran: null,
             },
+
+            listVilla: [],
         };
     },
     methods: {
@@ -142,9 +149,22 @@ export default {
                 console.log(error);
             }
         },
+
+        async getListVilla() {
+            let res = await axios.get("api/listvilla");
+            this.listVilla = res.data;
+        },
+
+        onChange(event) {
+            let x = _.find(this.listVilla, [
+                "id",
+                parseInt(event.target.value),
+            ]);
+            this.formData.harga_asli = x.harga;
+        },
     },
     mounted() {
-        console.log();
+        this.getListVilla();
     },
 };
 </script>

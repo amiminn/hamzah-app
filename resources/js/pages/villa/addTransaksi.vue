@@ -23,6 +23,8 @@ export default {
             console.log("sub form");
         },
     },
+
+    mounted() {},
 };
 </script>
 <style lang=""></style>

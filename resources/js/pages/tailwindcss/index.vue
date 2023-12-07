@@ -58,10 +58,6 @@
                     </acd>
                 </div>
                 <div>
-                    <tag>modal</tag>
-                    <modal name="Example Modal"></modal>
-                </div>
-                <div>
                     <tag>get App</tag>
                     <input
                         type="text"

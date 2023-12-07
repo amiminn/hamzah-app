@@ -16,6 +16,7 @@ import Acd from "./components/inc/accordion.vue";
 import Modal from "./components/inc/modal.vue";
 import Swal from "sweetalert2";
 import kembali from "./components/inc/kembali.vue";
+import warnavilla from "./components/inc/warnavilla.vue";
 
 createInertiaApp({
     resolve: (name) => {
@@ -34,6 +35,7 @@ createInertiaApp({
         app.component("acd", Acd);
         app.component("modal", Modal);
         app.component("kembali", kembali);
+        app.component("warnavilla", warnavilla);
         app.component(VueFeather.name, VueFeather);
 
         app.config.globalProperties.$url = "http://127.0.0.1:8000/";
