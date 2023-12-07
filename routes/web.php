@@ -17,8 +17,10 @@ Route::controller(PagesController::class)->group(function () {
         Route::get("/", "index");
         Route::get("profile", "profile");
         Route::get("users", "users");
+        Route::get("users={id}", "usersid");
         Route::get("villa", "villa");
         Route::get("transaksi", "transaksi");
+        Route::get("transaksi={id}", "transaksidetail");
         Route::get("transaksi-baru={fullDate}", "transaksibaru");
         Route::get("tambah-users", "tambahusers");
         Route::get("pengaturan", "pengaturan");

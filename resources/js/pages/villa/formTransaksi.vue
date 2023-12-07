@@ -144,7 +144,8 @@ export default {
         async submitForm() {
             try {
                 let res = await axios.post(this.$api.transaksi, this.formData);
-                console.log(res.data);
+                this.$toast(res.data.msg);
+                this.$router.get("transaksi");
             } catch (error) {
                 console.log(error);
             }

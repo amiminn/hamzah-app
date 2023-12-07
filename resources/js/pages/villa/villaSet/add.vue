@@ -58,10 +58,8 @@ export default {
         async addVilla() {
             try {
                 let res = await axios.post(this.$api.villa, this.formData);
-                console.log(res.data);
-            } catch (error) {
-                console.log(error);
-            }
+                this.$toast(res.data.msg);
+            } catch (error) {}
         },
         fullWarna() {
             this.warna = [

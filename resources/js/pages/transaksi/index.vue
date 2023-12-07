@@ -2,15 +2,13 @@
     <main-page>
         <card>
             <namecard>kelola villa</namecard>
-            <warnavilla></warnavilla>
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-white uppercase bg-gray-700">
                     <tr>
                         <th>no</th>
-                        <th>villa_id</th>
                         <th>nama cs</th>
                         <th>provinsi</th>
-                        <th>jumlah pembayaran</th>
+                        <th>jumlah dibayar (DP)</th>
                         <th>status</th>
                         <th>lihat</th>
                     </tr>
@@ -22,10 +20,9 @@
                         class="bg-white border-b hover:bg-gray-50"
                     >
                         <td>{{ index + 1 }}</td>
-                        <td><div class="h-3 bg-red-400 rounded w-28"></div></td>
                         <td>{{ d.nama_customer }}</td>
                         <td>{{ d.provinsi }}</td>
-                        <td>{{ d.jumlah_pembayaran }}</td>
+                        <td>{{ $filters.harga(d.jumlah_pembayaran) }}</td>
                         <td>{{ d.status ? "lunas" : "belum lunas" }}</td>
                         <td>
                             <Link

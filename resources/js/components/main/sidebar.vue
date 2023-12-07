@@ -16,18 +16,6 @@
                         <span class="ml-3">Dashboard</span>
                     </Link>
                 </li>
-
-                <li>
-                    <Link
-                        href="/users"
-                        :class="{ on: $page.url === '/users' }"
-                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
-                    >
-                        <vue-feather type="users"></vue-feather>
-
-                        <span class="ml-3">Users</span>
-                    </Link>
-                </li>
                 <li>
                     <Link
                         href="/villa"
@@ -58,6 +46,17 @@
                     >
                         <vue-feather type="sliders"></vue-feather>
                         <span class="ml-3">Pengaturan</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link
+                        href="/users"
+                        :class="{ on: $page.url === '/users' }"
+                        class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gray-100 group"
+                    >
+                        <vue-feather type="users"></vue-feather>
+
+                        <span class="ml-3">Users</span>
                     </Link>
                 </li>
                 <li>

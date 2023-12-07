@@ -17,7 +17,7 @@ class PengaturanController extends Controller
     public function store(Request $request)
     {
         try {
-            PengaturanModel::whereId(1)->update([
+            PengaturanModel::first()->update([
                 "nama_app" => $request->nama_app
             ]);
             return Response::success("pengaturan berhasil diupdate.");

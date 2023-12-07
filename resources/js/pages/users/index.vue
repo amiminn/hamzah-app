@@ -50,7 +50,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <Link
-                                    :href="'/user/' + d.id"
+                                    :href="'/users=' + d.id"
                                     class="font-medium text-blue-600 hover:underline"
                                     >Edit</Link
                                 >

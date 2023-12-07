@@ -31,6 +31,10 @@ class PagesController extends Controller
     {
         return Inertia::render("users/index");
     }
+    public function usersid()
+    {
+        return Inertia::render("users/show");
+    }
     public function villa()
     {
         return Inertia::render("villa/index");
@@ -38,6 +42,10 @@ class PagesController extends Controller
     public function transaksi()
     {
         return Inertia::render("transaksi/index");
+    }
+    public function transaksidetail()
+    {
+        return Inertia::render("transaksi/detail");
     }
     public function transaksibaru($fullDate)
     {

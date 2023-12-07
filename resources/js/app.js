@@ -3,8 +3,7 @@ import "animate.css";
 import "flowbite";
 import VueFeather from "vue-feather";
 import { createApp, h } from "vue";
-import { createInertiaApp, Link } from "@inertiajs/vue3";
-
+import { router, createInertiaApp, Link } from "@inertiajs/vue3";
 import Main from "./components/main/main.vue";
 import store from "./store";
 import Card from "./components/inc/card.vue";
@@ -39,6 +38,7 @@ createInertiaApp({
         app.component(VueFeather.name, VueFeather);
 
         app.config.globalProperties.$url = "http://127.0.0.1:8000/";
+        app.config.globalProperties.$router = router;
         app.config.globalProperties.$key = {
             uploadJs: "public_12a1ydKBufjwc3sJ9bMrA5r8G5D9",
         };
@@ -58,6 +58,16 @@ createInertiaApp({
             status(data = null) {
                 if (data == 1) return "Aktif";
                 if (data == 0) return "Nonaktif";
+            },
+            harga(num) {
+                return "Rp " + Number(num).toLocaleString();
+            },
+            terbayar(nominal, dibayar) {
+                if (nominal >= dibayar) {
+                    return "belum lunas";
+                } else {
+                    return "lunas";
+                }
             },
         };
 

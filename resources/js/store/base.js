@@ -2,7 +2,7 @@ export default {
     namespaced: true,
     state: () => ({
         app: {
-            nama_app: "@microservice",
+            nama_app: null,
         },
     }),
     mutations: {
