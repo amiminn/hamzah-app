@@ -62,9 +62,11 @@ createInertiaApp({
             harga(num) {
                 return "Rp " + Number(num).toLocaleString();
             },
-            terbayar(nominal, dibayar) {
-                if (nominal >= dibayar) {
+            terbayar(dibayar, nominal) {
+                if (dibayar < nominal) {
                     return "belum lunas";
+                } else if (dibayar == nominal) {
+                    return "lunas";
                 } else {
                     return "lunas";
                 }

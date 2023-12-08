@@ -1,6 +1,13 @@
 <template lang="">
     <card>
+        <alert>
+            Sebelum melanjutkan, periksa ketersediaan ruangan villa pada
+            kalender di bawah ini. Pilih tanggal yang menunjukkan ruangan yang
+            tersedia untuk memastikan kelancaran proses pemesanan. Terima kasih
+            atas perhatiannya.
+        </alert>
         <warnavilla></warnavilla>
+
         <div class="flex justify-end mb-2">
             <button
                 v-if="!bookingDate"

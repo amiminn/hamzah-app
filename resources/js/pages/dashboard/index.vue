@@ -14,7 +14,9 @@
                         />
                         <div class="grid text-right gap-2">
                             <div class="text-2xl">total transaksi</div>
-                            <div class="font-bold text-4xl">32</div>
+                            <div class="font-bold text-4xl">
+                                {{ data.total_transaksi }}
+                            </div>
                         </div>
                     </div>
                 </card>
@@ -53,7 +55,39 @@
                         />
                         <div class="grid text-right gap-2">
                             <div class="text-lg">jumlah kamar</div>
-                            <div class="font-bold text-4xl">4</div>
+                            <div class="font-bold text-4xl">
+                                {{ data.jumlah_kamar }}
+                            </div>
+                        </div>
+                    </div>
+                </card>
+                <card>
+                    <div class="flex justify-between gap-3">
+                        <img
+                            src="/assets/icon/warning_738884.png"
+                            alt="icon_transaksi"
+                            class="w-20"
+                        />
+                        <div class="grid text-right gap-2">
+                            <div class="text-lg">transaksi gugur</div>
+                            <div class="font-bold text-4xl">
+                                {{ data.jumlah_kamar }}
+                            </div>
+                        </div>
+                    </div>
+                </card>
+                <card>
+                    <div class="flex justify-between gap-3">
+                        <img
+                            src="/assets/icon/warning_738884.png"
+                            alt="icon_transaksi"
+                            class="w-20"
+                        />
+                        <div class="grid text-right gap-2">
+                            <div class="text-lg">transaksi berhasil</div>
+                            <div class="font-bold text-4xl">
+                                {{ data.jumlah_kamar }}
+                            </div>
                         </div>
                     </div>
                 </card>
@@ -66,6 +100,8 @@
     </main-page>
 </template>
 <script>
-export default {};
+export default {
+    props: ["data"],
+};
 </script>
 <style lang=""></style>

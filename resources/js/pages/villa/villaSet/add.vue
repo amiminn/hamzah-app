@@ -1,7 +1,8 @@
 <template>
     <div>
+        <warnavilla></warnavilla>
         <form @submit.prevent="addVilla">
-            <div class="grid gap-3">
+            <div class="grid gap-5">
                 <div>
                     <label for="identitas"
                         >Identitas villa (nama villa, kamar, dll)</label
@@ -13,27 +14,36 @@
                         class="form-input"
                     />
                 </div>
-                <div>
-                    <label for="harga">Harga permalam</label>
-                    <input
-                        v-model="formData.harga"
-                        type="number"
-                        id="harga"
-                        class="form-input"
-                    />
-                </div>
-                <div>
-                    <label for="warna">warna primary</label>
-                    <select
-                        id="warna"
-                        class="form-input"
-                        v-model="formData.primary"
-                    >
-                        <option selected disabled>pilih</option>
-                        <option v-for="d in warna" :value="d.kode">
-                            {{ d.nama }}
-                        </option>
-                    </select>
+                <div class="grid sm:xl:grid-cols-2 gap-3">
+                    <div>
+                        <label for="harga">Harga permalam</label>
+                        <input
+                            v-model="formData.harga"
+                            type="number"
+                            id="harga"
+                            class="form-input"
+                        />
+                    </div>
+                    <div>
+                        <label for="warna">
+                            <span
+                                class="px-3 w-10 rounded h-full"
+                                :class="formData.primary"
+                            >
+                                warna primary
+                            </span>
+                        </label>
+                        <select
+                            id="warna"
+                            class="form-input"
+                            v-model="formData.primary"
+                        >
+                            <option selected disabled>pilih</option>
+                            <option v-for="d in warna" :value="d.kode">
+                                {{ d.nama }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                     submit

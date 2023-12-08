@@ -23,7 +23,14 @@
                         <td>{{ d.nama_customer }}</td>
                         <td>{{ d.provinsi }}</td>
                         <td>{{ $filters.harga(d.jumlah_pembayaran) }}</td>
-                        <td>{{ d.status ? "lunas" : "belum lunas" }}</td>
+                        <td>
+                            {{
+                                $filters.terbayar(
+                                    d.jumlah_dibayar,
+                                    d.harga_asli
+                                )
+                            }}
+                        </td>
                         <td>
                             <Link
                                 class="text-blue-400"

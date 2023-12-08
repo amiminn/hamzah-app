@@ -15,7 +15,7 @@ Route::controller(AuthService::class)->group(function () {
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource("users", UserController::class);
-    Route::apiResource("transaksi", TransaksiController::class)->only(["index", "store"]);
+    Route::apiResource("transaksi", TransaksiController::class)->only(["index", "store", "update"]);
     Route::get("transaksi-date", [TransaksiController::class, "dateTransaksi"]);
     Route::get("listvilla", [VillaController::class, "listvilla"]);
     Route::apiResource("villa", VillaController::class)->only(["index", "store"]);

@@ -15,11 +15,6 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "@easepick/bundle": "^1.2.1",
-        "@easepick/core": "^1.2.1",
-        "@easepick/datetime": "^1.2.1",
-        "@easepick/lock-plugin": "^1.2.1",
-        "@easepick/range-plugin": "^1.2.1",
         "@fullcalendar/core": "^6.1.10",
         "@fullcalendar/daygrid": "^6.1.10",
         "@fullcalendar/interaction": "^6.1.10",

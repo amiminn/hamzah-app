@@ -67,4 +67,8 @@ export default {
 .fc-day {
     cursor: pointer;
 }
+
+:disabled {
+    @apply !hidden;
+}
 </style>

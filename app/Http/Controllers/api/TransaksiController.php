@@ -11,7 +11,7 @@ class TransaksiController extends Controller
 {
     public function index(Request $request)
     {
-        return TransaksiModel::paginate(10);
+        return TransaksiModel::paginate(5);
     }
 
     public function store(Request $request)
@@ -34,5 +34,31 @@ class TransaksiController extends Controller
         return collect(TransaksiModel::get())->map(function ($data) {
             return collect($data->only(["nama_customer", "booking_date"]))->put("datavilla", $data->villa()->first(["nama", "primary"]));
         });
+    }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            TransaksiModel::find($id)->update([
+                "nama_customer" => $request->nama_customer,
+                "email" => $request->email,
+                "no_hp" => $request->no_hp,
+                "domisili" => $request->domisili,
+                "provinsi" => $request->provinsi,
+                "jumlah_pembayaran" => $request->jumlah_pembayaran,
+            ]);
+            return Response::success("Transaksi berhasil diupdate.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function updateStatus(Request $request)
+    {
+        try {
+            //code...
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\TransaksiModel;
+use App\Models\VillaModel;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -9,7 +11,13 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return Inertia::render("dashboard/index");
+        $data = [
+            "total_transaksi" => TransaksiModel::count(),
+            "total_pendapatan" => 0,
+            "pendapatan_bulan_ini" => 0,
+            "jumlah_kamar" => VillaModel::count(),
+        ];
+        return Inertia::render("dashboard/index", compact("data"));
     }
 
     public function login()
@@ -43,9 +51,11 @@ class PagesController extends Controller
     {
         return Inertia::render("transaksi/index");
     }
-    public function transaksidetail()
+    public function transaksidetail($id)
     {
-        return Inertia::render("transaksi/detail");
+        $res = TransaksiModel::find($id);
+        $data = collect($res)->put("datavilla", $res->villa()->first());
+        return Inertia::render("transaksi/detail", compact("data"));
     }
     public function transaksibaru($fullDate)
     {

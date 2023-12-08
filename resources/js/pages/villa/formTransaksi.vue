@@ -8,6 +8,13 @@
                 <div class="mb-5">
                     <kembali></kembali>
                 </div>
+                <alert>
+                    Penting: Sebelum melanjutkan, pastikan bahwa informasi yang
+                    Anda masukkan dalam formulir villa ini adalah benar dan
+                    lengkap. Harap periksa kembali tanggal, data customer, dan
+                    detail lainnya untuk memastikan kelancaran proses input
+                    data.
+                </alert>
                 <warnavilla></warnavilla>
                 <form @submit.prevent="submitForm">
                     <div class="grid sm:xl:grid-cols-2 gap-3">

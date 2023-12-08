@@ -7,6 +7,9 @@
     src: url(fonts/Jost-Regular.ttf);
 }
 
+body {
+    font-family: "Roboto", sans-serif;
+}
 @layer components {
     .card {
         @apply my-2 w-full border-2 border-gray-700 border-dashed rounded-lg bg-white;
