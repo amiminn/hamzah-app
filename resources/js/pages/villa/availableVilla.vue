@@ -18,7 +18,7 @@
                     alt="warning"
                     class="w-5"
                 />
-                lanjut (tambah) transaksi
+                pilih tanggal booking
             </button>
             <Link
                 :href="'transaksi-baru=' + bookingDate"

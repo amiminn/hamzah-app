@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('provinsi')->nullable();
             $table->string('invoice');
             $table->integer('harga_asli')->default(0);
-            $table->string('jumlah_pembayaran')->default(0);
+            $table->integer('jumlah_pembayaran')->default(0);
             $table->boolean('status')->default(0);
             $table->timestamps();
         });

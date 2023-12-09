@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\TransaksiModel;
 use App\Models\VillaModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class PagesController extends Controller
@@ -13,10 +14,18 @@ class PagesController extends Controller
     {
         $data = [
             "total_transaksi" => TransaksiModel::count(),
-            "total_pendapatan" => 0,
-            "pendapatan_bulan_ini" => 0,
+            "total_pendapatan" => collect(collect(DB::table('transaksi')->get(["created_at", "jumlah_pembayaran"]))->map(function ($data) {
+                return $data->jumlah_pembayaran;
+            }))->sum(),
+            "pendapatan_bulan_ini" => collect(collect(DB::table('transaksi')
+                ->whereYear("created_at", date('Y'))
+                ->whereMonth('created_at', date('m'))
+                ->get("jumlah_pembayaran"))->map(function ($data) {
+                return $data->jumlah_pembayaran;
+            }))->sum(),
             "jumlah_kamar" => VillaModel::count(),
         ];
+
         return Inertia::render("dashboard/index", compact("data"));
     }
 

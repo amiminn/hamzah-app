@@ -19,7 +19,14 @@
                 <td>{{ d.nama }}</td>
                 <td><div class="h-3 rounded w-28" :class="d.primary"></div></td>
                 <td>-</td>
-                <td>edit</td>
+                <td>
+                    <div
+                        @click="editVilla(d.id)"
+                        class="cursor-pointer text-sky-700"
+                    >
+                        edit
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -58,6 +65,9 @@ export default {
 
         getResult(page) {
             this.loadPage(page);
+        },
+        editVilla(id) {
+            console.log(id);
         },
     },
     mounted() {

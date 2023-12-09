@@ -16,6 +16,7 @@ import Modal from "./components/inc/modal.vue";
 import Swal from "sweetalert2";
 import kembali from "./components/inc/kembali.vue";
 import warnavilla from "./components/inc/warnavilla.vue";
+import toRupiah from "@develoka/angka-rupiah-js";
 
 createInertiaApp({
     resolve: (name) => {
@@ -60,7 +61,14 @@ createInertiaApp({
                 if (data == 0) return "Nonaktif";
             },
             harga(num) {
-                return "Rp " + Number(num).toLocaleString();
+                return toRupiah(num, { formal: false, floatingPoint: 0 });
+            },
+            hargaGroup(num) {
+                return toRupiah(num, {
+                    formal: false,
+                    useUnit: true,
+                    spaceBeforeUnit: true,
+                });
             },
             terbayar(dibayar, nominal) {
                 if (dibayar < nominal) {

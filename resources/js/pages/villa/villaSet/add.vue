@@ -45,7 +45,27 @@
                         </select>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">
+                <div class="flex gap-3">
+                    <input
+                        id="setujuForm"
+                        v-model="setuju"
+                        type="checkbox"
+                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                    />
+                    <label
+                        for="setujuForm"
+                        class="text-gray-500 italic text-sm"
+                    >
+                        saya setuju dan memahami bahwa informasi yang saya
+                        berikan akan digunakan sesuai dengan kebijakan privasi
+                        dan syarat ketentuan yang berlaku.
+                    </label>
+                </div>
+                <button
+                    v-if="setuju"
+                    type="submit"
+                    class="btn btn-primary btn-block"
+                >
                     submit
                 </button>
             </div>
@@ -56,6 +76,7 @@
 export default {
     data() {
         return {
+            setuju: false,
             warna: [],
             formData: {
                 nama: null,
@@ -74,12 +95,36 @@ export default {
         fullWarna() {
             this.warna = [
                 {
-                    nama: "merah",
+                    nama: "red",
                     kode: "bg-red-400",
                 },
                 {
-                    nama: "biru",
+                    nama: "blue",
                     kode: "bg-blue-400",
+                },
+                {
+                    nama: "sky",
+                    kode: "bg-sky-400",
+                },
+                {
+                    nama: "orange",
+                    kode: "bg-orange-400",
+                },
+                {
+                    nama: "yellow",
+                    kode: "bg-yellow-400",
+                },
+                {
+                    nama: "green",
+                    kode: "bg-green-400",
+                },
+                {
+                    nama: "violet",
+                    kode: "bg-violet-400",
+                },
+                {
+                    nama: "slate",
+                    kode: "bg-slate-400",
                 },
             ];
         },
