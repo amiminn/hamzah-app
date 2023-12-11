@@ -63,8 +63,8 @@ export default {
                             !delayed
                         ) {
                             delay =
-                                context.dataIndex * 300 +
-                                context.datasetIndex * 100;
+                                context.dataIndex * 1000 +
+                                context.datasetIndex * 500;
                         }
                         return delay;
                     },

@@ -1,7 +1,9 @@
 <template lang="">
     <main-page>
         <card>
-            <namecard>kelola villa</namecard>
+            <namecard
+                >kelola villa {{ $filters.terbayar(1000, 5000) }}</namecard
+            >
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-white uppercase bg-gray-700">
                     <tr>
@@ -26,7 +28,7 @@
                         <td>
                             {{
                                 $filters.terbayar(
-                                    d.jumlah_dibayar,
+                                    d.jumlah_pembayaran,
                                     d.harga_asli
                                 )
                             }}

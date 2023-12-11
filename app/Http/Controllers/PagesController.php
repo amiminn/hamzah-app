@@ -62,9 +62,7 @@ class PagesController extends Controller
     }
     public function transaksidetail($id)
     {
-        $res = TransaksiModel::find($id);
-        $data = collect($res)->put("datavilla", $res->villa()->first());
-        return Inertia::render("transaksi/detail", compact("data"));
+        return Inertia::render("transaksi/detail", compact("id"));
     }
     public function transaksibaru($fullDate)
     {

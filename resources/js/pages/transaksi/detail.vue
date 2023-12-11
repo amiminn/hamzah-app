@@ -22,7 +22,7 @@
                                 type="text"
                                 id="invoice"
                                 class="form-input disabled"
-                                v-model="data.invoice"
+                                v-model="dataTransaksi.invoice"
                             />
                         </div>
                         <div>
@@ -32,7 +32,7 @@
                                 type="text"
                                 id="villa"
                                 class="form-input disabled"
-                                v-model="data.datavilla.nama"
+                                v-model="datavilla.nama"
                             />
                         </div>
                         <div>
@@ -42,7 +42,7 @@
                                 id="cekin"
                                 readonly
                                 class="form-input disabled"
-                                v-model="data.booking_date.startStr"
+                                v-model="booking_date.startStr"
                             />
                         </div>
                         <div>
@@ -52,7 +52,7 @@
                                 id="cekout"
                                 readonly
                                 class="form-input disabled"
-                                v-model="data.booking_date.endStr"
+                                v-model="booking_date.endStr"
                             />
                         </div>
                         <div>
@@ -61,16 +61,17 @@
                                 type="text"
                                 id="nama"
                                 class="form-input"
-                                v-model="data.nama_customer"
+                                v-model="dataTransaksi.nama_customer"
                             />
                         </div>
+
                         <div>
                             <label for="email">email</label>
                             <input
                                 type="text"
                                 id="email"
                                 class="form-input"
-                                v-model="data.email"
+                                v-model="dataTransaksi.email"
                             />
                         </div>
                         <div>
@@ -79,7 +80,7 @@
                                 type="text"
                                 id="no_hp"
                                 class="form-input"
-                                v-model="data.no_hp"
+                                v-model="dataTransaksi.no_hp"
                             />
                         </div>
                         <div>
@@ -88,7 +89,7 @@
                                 type="text"
                                 id="domisili"
                                 class="form-input"
-                                v-model="data.domisili"
+                                v-model="dataTransaksi.domisili"
                             />
                         </div>
                         <div>
@@ -97,7 +98,7 @@
                                 type="text"
                                 id="provinsi"
                                 class="form-input"
-                                v-model="data.provinsi"
+                                v-model="dataTransaksi.provinsi"
                             />
                         </div>
                         <div>
@@ -106,7 +107,7 @@
                                 type="text"
                                 id="jumlah_dibayar"
                                 class="form-input"
-                                v-model="data.jumlah_pembayaran"
+                                v-model="dataTransaksi.jumlah_pembayaran"
                             />
                         </div>
                     </div>
@@ -127,20 +128,34 @@
                         melanjutkan proses penghapusan. Setelah dihapus, data
                         tidak dapat dipulihkan.
                     </alert>
-                    <button class="btn btn-danger btn-block my-5">hapus</button>
+                    <button
+                        class="btn btn-danger btn-block my-5"
+                        @click="confirmDel()"
+                    >
+                        hapus
+                    </button>
                 </card>
-                <card>
+                <div
+                    v-if="statusPembayaran"
+                    class="flex items-center justify-center p-4 mb-4 text-xl border border-green-800 text-green-800 rounded-lg bg-green-50"
+                >
+                    status pembayaran telah lunas
+                </div>
+                <card v-if="!statusPembayaran">
                     <alert>
                         <span class="font-bold"> Penting: </span>
-                        Mengubah status pembayaran dari 'Lunas' menjadi 'Belum
-                        Lunas' atau sebaliknya dapat berdampak pada akurasi
-                        catatan keuangan. Harap pastikan bahwa perubahan ini
-                        sesuai dengan transaksi sebenarnya. Setelah diubah,
-                        perubahan ini akan mempengaruhi laporan dan catatan
-                        keuangan.
+                        Mengubah status pembayaran dari 'Belum Lunas' menjadi
+                        'Lunas' dapat berdampak pada akurasi catatan keuangan.
+                        Harap pastikan bahwa perubahan ini sesuai dengan
+                        transaksi sebenarnya. Setelah diubah, perubahan ini akan
+                        mempengaruhi laporan dan catatan keuangan.
                     </alert>
-                    <button class="btn btn-danger btn-block my-5">
-                        belum lunas
+
+                    <button
+                        class="btn btn-danger btn-block my-5"
+                        @click="transaksiLunas"
+                    >
+                        lunasi sekarang
                     </button>
                 </card>
             </div>
@@ -148,33 +163,90 @@
     </main-page>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
-    props: ["data"],
+    props: ["id"],
     data() {
-        return {};
+        return {
+            statusPembayaran: false,
+            dataTransaksi: {
+                jumlah_pembayaran: 0,
+            },
+            datavilla: {},
+            booking_date: {},
+        };
     },
     methods: {
+        async getData() {
+            try {
+                let res = await axios.get(this.$api.transaksi + "/" + this.id);
+                this.dataTransaksi = res.data;
+                this.datavilla = res.data.datavilla;
+                this.booking_date = res.data.booking_date;
+                this.statusPembayaran = res.data.status;
+                this.dataTransaksi.jumlah_pembayaran =
+                    res.data.jumlah_pembayaran;
+            } catch (error) {}
+        },
+
         async updateForm() {
             try {
-                let res = await axios.put(
-                    this.$api.transaksi + "/" + this.data.id,
-                    {
-                        nama_customer: this.data.nama_customer,
-                        email: this.data.email,
-                        no_hp: this.data.no_hp,
-                        domisili: this.data.domisili,
-                        provinsi: this.data.provinsi,
-                        jumlah_pembayaran: this.data.jumlah_pembayaran,
-                    }
-                );
-
+                let res = await axios.put(this.$api.transaksi + "/" + this.id, {
+                    nama_customer: this.dataTransaksi.nama_customer,
+                    email: this.dataTransaksi.email,
+                    no_hp: this.dataTransaksi.no_hp,
+                    domisili: this.dataTransaksi.domisili,
+                    provinsi: this.dataTransaksi.provinsi,
+                    jumlah_pembayaran: this.dataTransaksi.jumlah_pembayaran,
+                });
+                this.getData();
                 this.$toast(res.data.msg);
             } catch (error) {
                 console.log(error);
             }
         },
+
+        async delData() {
+            try {
+                let res = await axios.delete(
+                    this.$api.transaksi + "/" + this.id
+                );
+                this.$toast(res.data.msg);
+                this.$router.get("transaksi");
+            } catch (error) {
+                console.log(error);
+            }
+        },
+
+        confirmDel() {
+            Swal.fire({
+                title: "Apakah Anda yakin ingin menghapus data?",
+                text: "Setelah dihapus, data tidak dapat dipulihkan.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, hapus!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.delData();
+                }
+            });
+        },
+
+        async transaksiLunas() {
+            try {
+                let res = await axios.get("api/transaksi-lunas=" + this.id);
+                this.$toast(res.data.msg);
+                this.getData();
+            } catch (error) {
+                console.error(error);
+            }
+        },
     },
-    mounted() {},
+    mounted() {
+        this.getData();
+    },
 };
 </script>
 <style lang=""></style>

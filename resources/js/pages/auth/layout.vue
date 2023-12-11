@@ -1,7 +1,7 @@
 <template lang="">
-    <div class="h-screen grid sm:2xl:grid-cols-5">
+    <div class="h-screen grid sm:md:grid-cols-5">
         <div
-            class="col-span-3 hidden sm:2xl:block bg-center bg-cover"
+            class="col-span-3 hidden sm:md:block bg-center bg-cover"
             :style="style"
         ></div>
         <div class="col-span-2 px-10 grid items-center">

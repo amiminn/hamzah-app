@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Services\Response;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -45,4 +46,14 @@ class TransaksiModel extends Model
         }
         return $dates;
     }
+
+    // public function getCreatedAtAttribute($date)
+    // {
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+    // }
+
+    // public function getUpdatedAtAttribute($date)
+    // {
+    //     return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('Y-m-d');
+    // }
 }

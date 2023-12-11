@@ -26,7 +26,8 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        return TransaksiModel::find($id);
+        $res = TransaksiModel::find($id);
+        return collect($res)->put("datavilla", $res->villa()->first());
     }
 
     public function dateTransaksi(Request $request)
@@ -39,13 +40,21 @@ class TransaksiController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            TransaksiModel::find($id)->update([
+            $data = TransaksiModel::find($id);
+            if ($request->jumlah_pembayaran < $data->harga_asli) {
+                $status = 0;
+            } else {
+                $status = 1;
+            }
+
+            $data->update([
                 "nama_customer" => $request->nama_customer,
                 "email" => $request->email,
                 "no_hp" => $request->no_hp,
                 "domisili" => $request->domisili,
                 "provinsi" => $request->provinsi,
                 "jumlah_pembayaran" => $request->jumlah_pembayaran,
+                "status" => $status
             ]);
             return Response::success("Transaksi berhasil diupdate.");
         } catch (\Throwable $th) {
@@ -59,6 +68,30 @@ class TransaksiController extends Controller
             //code...
         } catch (\Throwable $th) {
             //throw $th;
+        }
+    }
+
+    public function transaksiLunas($id)
+    {
+        try {
+            $data = TransaksiModel::find($id);
+            $data->update([
+                "jumlah_pembayaran" => $data->harga_asli,
+                "status" => 1
+            ]);
+            return Response::success("Transaksi berhasil diupdate.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            TransaksiModel::find($id)->delete();
+            return Response::success("data transaksi berhasil dihapus.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
         }
     }
 }
