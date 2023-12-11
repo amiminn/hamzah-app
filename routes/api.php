@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\api\DashboardController;
 use App\Http\Controllers\api\PengaturanController;
 use App\Http\Controllers\api\TransaksiController;
 use App\Http\Controllers\api\UserController;
@@ -28,6 +29,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 Route::resource('pengaturan', PengaturanController::class)->only(["index", "store"]);
 
-Route::get("/", function () {
-    return TransaksiModel::get();
-});
+Route::get("/", [DashboardController::class, "index"]);
