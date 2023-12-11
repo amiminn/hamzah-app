@@ -48,6 +48,7 @@ createInertiaApp({
             auth: {
                 login: "/login",
             },
+            dashboard: "/api/dashboard",
             pengaturan: "/api/pengaturan",
             users: "/api/users",
             transaksi: "/api/transaksi",
@@ -60,14 +61,15 @@ createInertiaApp({
                 if (data == 1) return "Aktif";
                 if (data == 0) return "Nonaktif";
             },
-            harga(num) {
+            harga(num = 0) {
                 return toRupiah(num, { formal: false, floatingPoint: 0 });
             },
-            hargaGroup(num) {
+            hargaGroup(num = 0, gap = 2) {
                 return toRupiah(num, {
                     formal: false,
                     useUnit: true,
                     spaceBeforeUnit: true,
+                    floatingPoint: gap,
                 });
             },
             terbayar(dibayar, nominal) {

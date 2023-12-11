@@ -102,6 +102,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
     data() {
         return {
@@ -118,6 +120,14 @@ export default {
             // console.log(this.$store.state.base.app);
             // this.$store.commit("base/appConfig");
         },
+        async getData() {
+            let res = await axios.get("/api");
+            console.log(res.data);
+        },
+    },
+
+    mounted() {
+        this.getData();
     },
 };
 </script>

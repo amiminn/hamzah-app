@@ -15,7 +15,7 @@
                         <div class="grid text-right gap-2">
                             <div class="text-2xl">total transaksi</div>
                             <div class="font-bold text-3xl">
-                                {{ data.total_transaksi }}
+                                {{ dashboard.total_transaksi }}
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,11 @@
                         <div class="grid text-right gap-2">
                             <div class="text-lg">total pendapatan</div>
                             <div class="font-bold text-3xl">
-                                {{ $filters.hargaGroup(data.total_pendapatan) }}
+                                {{
+                                    $filters.hargaGroup(
+                                        parseInt(dashboard.total_pendapatan)
+                                    )
+                                }}
                             </div>
                         </div>
                     </div>
@@ -47,7 +51,10 @@
                             <div class="font-bold text-3xl">
                                 {{
                                     $filters.hargaGroup(
-                                        data.pendapatan_bulan_ini
+                                        parseInt(
+                                            dashboard.pendapatan_bulan_ini
+                                        ),
+                                        1
                                     )
                                 }}
                             </div>
@@ -64,7 +71,7 @@
                         <div class="grid text-right gap-2">
                             <div class="text-lg">jumlah kamar</div>
                             <div class="font-bold text-3xl">
-                                {{ data.jumlah_kamar }}
+                                {{ dashboard.jumlah_kamar }}
                             </div>
                         </div>
                     </div>
@@ -103,18 +110,32 @@
             <div class="grid gap-3">
                 <!-- <card> chart pendapatan? </card> -->
                 <!-- <card> chart transaksi meningkat? </card> -->
-                <ChartA></ChartA>
+                <ChartA :data="dataChart"></ChartA>
             </div>
         </div>
     </main-page>
 </template>
 <script>
+import axios from "axios";
 import ChartA from "./chart.vue";
 export default {
     props: ["data"],
+    data() {
+        return {
+            dashboard: {},
+            dataChart: [],
+        };
+    },
     components: { ChartA },
-    mounted() {
-        console.log(this.data);
+    methods: {
+        async getData() {
+            let res = await axios.get(this.$api.dashboard);
+            this.dashboard = res.data;
+        },
+    },
+    mounted() {},
+    beforeMount() {
+        this.getData();
     },
 };
 </script>

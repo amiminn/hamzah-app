@@ -15,6 +15,8 @@ Route::controller(AuthService::class)->group(function () {
 });
 
 Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get("dashboard", [DashboardController::class, "index"]);
+    Route::get("data-chart", [DashboardController::class, "chart"]);
     Route::apiResource("users", UserController::class);
     Route::apiResource("transaksi", TransaksiController::class)->only(["index", "store", "update", "destroy", "show"]);
     Route::get("transaksi-date", [TransaksiController::class, "dateTransaksi"]);
@@ -28,5 +30,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 Route::resource('pengaturan', PengaturanController::class)->only(["index", "store"]);
-
-Route::get("/", [DashboardController::class, "index"]);
