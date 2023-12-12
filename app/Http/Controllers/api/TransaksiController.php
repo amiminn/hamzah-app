@@ -9,9 +9,9 @@ use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        return TransaksiModel::paginate(5);
+        return TransaksiModel::orderByDesc("id")->paginate(10);
     }
 
     public function store(Request $request)
@@ -90,6 +90,18 @@ class TransaksiController extends Controller
         try {
             TransaksiModel::find($id)->delete();
             return Response::success("data transaksi berhasil dihapus.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function cari(Request $request)
+    {
+        try {
+            if ($request->name == "null" || $request->name == "") {
+                return $this->index();
+            }
+            return TransaksiModel::where('nama_customer', 'like', $request->name . '%')->paginate(10);
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

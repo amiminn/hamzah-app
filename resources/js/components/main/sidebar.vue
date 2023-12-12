@@ -59,7 +59,7 @@
                         <span class="ml-3">Users</span>
                     </Link>
                 </li>
-                <li>
+                <!-- <li>
                     <Link
                         href="/tailwindcss"
                         :class="{ on: $page.url === '/tailwindcss' }"
@@ -69,7 +69,7 @@
 
                         <span class="ml-3">tailwindcss</span>
                     </Link>
-                </li>
+                </li> -->
             </ul>
         </div>
     </aside>

@@ -1,18 +1,61 @@
 <template lang="">
     <main-page>
-        <card>
-            <div>
+        <div class="grid gap-3">
+            <card>
                 <namecard>kelola user</namecard>
-                <input type="text" />
-                <div ref="input">el</div>
-            </div>
-        </card>
+            </card>
+            <card>
+                <form @submit.prevent="addUser()">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label for="namaUser">nama</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="namaUser"
+                            />
+                        </div>
+                        <div>
+                            <label for="emailUser">email</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="emailUser"
+                            />
+                        </div>
+                        <div>
+                            <label for="passwordUser">password</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="passwordUser"
+                            />
+                        </div>
+                        <div>
+                            <label for="roleUser">role</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="roleUser"
+                            />
+                        </div>
+                    </div>
+                    <button
+                        type="submit"
+                        class="btn btn-primary btn-block my-4"
+                    >
+                        update
+                    </button>
+                </form>
+            </card>
+        </div>
     </main-page>
 </template>
 <script>
 export default {
+    props: ["data"],
     mounted() {
-        console.log(this.$refs);
+        console.log(this.data);
     },
 };
 </script>

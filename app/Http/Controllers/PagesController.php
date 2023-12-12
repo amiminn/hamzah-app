@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransaksiModel;
+use App\Models\User;
 use App\Models\VillaModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -48,9 +49,10 @@ class PagesController extends Controller
     {
         return Inertia::render("users/index");
     }
-    public function usersid()
+    public function usersid($id)
     {
-        return Inertia::render("users/show");
+        $data = User::find($id);
+        return Inertia::render("users/show", compact("data"));
     }
     public function villa()
     {
