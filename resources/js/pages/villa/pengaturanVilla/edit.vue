@@ -1,12 +1,12 @@
 <template>
     <div>
         <warnavilla></warnavilla>
-        <form @submit.prevent="addVilla">
+        <form @submit.prevent="updateVilla">
             <div class="grid gap-5">
                 <div>
-                    <label for="identitas"
-                        >Identitas villa (nama villa, kamar, dll)</label
-                    >
+                    <label for="identitas">
+                        Identitas villa (nama villa, kamar, dll)
+                    </label>
                     <input
                         v-model="formData.nama"
                         type="text"
@@ -66,7 +66,7 @@
                     type="submit"
                     class="btn btn-primary btn-block"
                 >
-                    submit
+                    update
                 </button>
             </div>
         </form>
@@ -74,6 +74,7 @@
 </template>
 <script>
 export default {
+    props: ["idVilla"],
     data() {
         return {
             setuju: false,
@@ -86,9 +87,12 @@ export default {
         };
     },
     methods: {
-        async addVilla() {
+        async updateVilla() {
             try {
-                let res = await axios.post(this.$api.villa, this.formData);
+                let res = await axios.put(
+                    this.$api.villa + "/" + this.idVilla,
+                    this.formData
+                );
                 this.$toast(res.data.msg);
             } catch (error) {}
         },
@@ -128,9 +132,16 @@ export default {
                 },
             ];
         },
+        async getVilla() {
+            try {
+                let res = await axios.get(this.$api.villa + "/" + this.idVilla);
+                this.formData = res.data;
+            } catch (error) {}
+        },
     },
     mounted() {
         this.fullWarna();
+        this.getVilla();
     },
 };
 </script>

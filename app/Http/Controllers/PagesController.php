@@ -58,6 +58,10 @@ class PagesController extends Controller
     {
         return Inertia::render("villa/index");
     }
+    public function pengaturanvilla()
+    {
+        return Inertia::render("villa/pengaturan");
+    }
     public function transaksi()
     {
         return Inertia::render("transaksi/index");

@@ -33,4 +33,28 @@ class VillaController extends Controller
     {
         return VillaModel::get(["id", "nama", "harga", "primary"]);
     }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            VillaModel::find($id)->update([
+                "nama" => $request->nama,
+                "harga" => $request->harga,
+                "primary" => $request->primary,
+            ]);
+            return Response::success("data villa berhasil diedit.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            VillaModel::find($id)->delete();
+            return Response::success("data villa berhasil dihapus.");
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }

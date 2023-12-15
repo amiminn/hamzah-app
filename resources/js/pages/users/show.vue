@@ -10,6 +10,7 @@
                         <div>
                             <label for="namaUser">nama</label>
                             <input
+                                v-model="dataUser.name"
                                 type="text"
                                 class="form-input"
                                 id="namaUser"
@@ -18,6 +19,7 @@
                         <div>
                             <label for="emailUser">email</label>
                             <input
+                                v-model="dataUser.email"
                                 type="text"
                                 class="form-input"
                                 id="emailUser"
@@ -54,8 +56,18 @@
 <script>
 export default {
     props: ["data"],
+    data() {
+        return {
+            dataUser: [],
+        };
+    },
+    methods: {
+        async updateUser() {
+            let res = axios.put();
+        },
+    },
     mounted() {
-        console.log(this.data);
+        this.dataUser = this.data;
     },
 };
 </script>

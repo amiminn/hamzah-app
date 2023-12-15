@@ -70,7 +70,13 @@
                 </div>
                 <div>
                     <tag>modal</tag>
-                    <modal name="Example Modal"></modal>
+                    <modal
+                        name="Example Modal"
+                        btn="tambah user"
+                        className="text-blue-400"
+                    >
+                        isi nya
+                    </modal>
                 </div>
                 <div>
                     <div class="border-b border-gray-200">
