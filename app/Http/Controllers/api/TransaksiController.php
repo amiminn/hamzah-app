@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Models\TransaksiModel;
 use App\Services\Response;
+use DateTime;
 use Illuminate\Http\Request;
 
 class TransaksiController extends Controller
@@ -17,7 +18,12 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         try {
-            TransaksiModel::create($request->all());
+            $checkInDate = new DateTime($request->booking_date['startStr']);
+            $checkOutDate = new DateTime($request->booking_date['endStr']);
+            $interval = $checkInDate->diff($checkOutDate);
+            $jumlahMalam = $interval->format('%a');
+            $data = collect($request->all())->put("harga_asli",  $request->harga_asli * $jumlahMalam);
+            TransaksiModel::create($data);
             return Response::success("Transaksi baru berhasil dibuat.");
         } catch (\Throwable $th) {
             return $th->getMessage();

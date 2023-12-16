@@ -91,10 +91,13 @@ export default {
             }).then((result) => {
                 if (result.isConfirmed) {
                     try {
-                        let res = axios.delete(this.$api.villa + "/" + id);
-                        this.$toast(res.data.msg);
-                        this.getData();
-                    } catch (error) {}
+                        axios.delete(this.$api.villa + "/" + id).then((res) => {
+                            this.$toast(res.data.msg);
+                            this.getData();
+                        });
+                    } catch (error) {
+                        console.log(error);
+                    }
                 }
             });
         },

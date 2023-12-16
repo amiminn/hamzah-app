@@ -4,10 +4,19 @@
             <div class="grid gap-3">
                 <card>
                     <namecard>avatar</namecard>
+                    <div class="flex justify-center">
+                        <img
+                            src="assets/icon/gamer_1985783.png"
+                            alt="avatar"
+                            class="rounded-full w-40 border-2"
+                        />
+                    </div>
                 </card>
                 <updatepassword />
             </div>
-            <informasiprofile />
+            <div>
+                <informasiprofile />
+            </div>
         </div>
     </main-page>
 </template>

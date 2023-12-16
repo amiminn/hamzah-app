@@ -45,7 +45,7 @@ export default {
                                 "rgb(54, 162, 235)",
                                 "rgb(153, 102, 255)",
                             ],
-                            borderWidth: 1,
+                            borderWidth: 4,
                         },
                     ],
                 },

@@ -15,6 +15,19 @@
                     detail lainnya untuk memastikan kelancaran proses input
                     data.
                 </alert>
+                <alert
+                    >Booking selama
+                    <span class="font-bold text-xl"
+                        >{{ jumlah_malam }} malam</span
+                    >, check-in
+                    <span class="font-bold text-xl">
+                        {{ formData.booking_date.startStr }}
+                    </span>
+                    dan check-out
+                    <span class="font-bold text-xl">
+                        {{ formData.booking_date.endStr }}
+                    </span>
+                </alert>
                 <warnavilla></warnavilla>
                 <form @submit.prevent="submitForm">
                     <div class="grid sm:xl:grid-cols-2 gap-3">
@@ -80,7 +93,9 @@
                             />
                         </div>
                         <div>
-                            <label for="harga_asli">harga villa</label>
+                            <label for="harga_asli"
+                                >harga villa (per-malam)</label
+                            >
                             <input
                                 v-model="formData.harga_asli"
                                 type="text"
@@ -136,7 +151,7 @@ export default {
                 villa_id: null,
                 booking_date: JSON.parse(this.fullDate),
                 nama_customer: null,
-                no_hp: "+62",
+                no_hp: "62",
                 email: null,
                 domisili: null,
                 provinsi: null,
@@ -145,6 +160,10 @@ export default {
             },
 
             listVilla: [],
+            jumlah_malam: this.hitungMalam(
+                JSON.parse(this.fullDate).startStr,
+                JSON.parse(this.fullDate).endStr
+            ),
         };
     },
     methods: {
@@ -169,6 +188,13 @@ export default {
                 parseInt(event.target.value),
             ]);
             this.formData.harga_asli = x.harga;
+        },
+
+        hitungMalam(startStr, endStr) {
+            var checkInDate = new Date(startStr);
+            var checkOutDate = new Date(endStr);
+            var timeDifference = checkOutDate.getTime() - checkInDate.getTime();
+            return Math.ceil(timeDifference / (1000 * 3600 * 24));
         },
     },
     mounted() {

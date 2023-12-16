@@ -42,7 +42,7 @@ class VillaController extends Controller
                 "harga" => $request->harga,
                 "primary" => $request->primary,
             ]);
-            return Response::success("data villa berhasil diedit.");
+            return Response::success("data villa berhasil diupdate.");
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

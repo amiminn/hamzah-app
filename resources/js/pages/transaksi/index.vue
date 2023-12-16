@@ -4,6 +4,7 @@
             <card>
                 <namecard>kelola transaksi</namecard>
             </card>
+            <to-excel></to-excel>
             <card>
                 <div class="my-3">
                     <form @submit.prevent="cari">
@@ -77,9 +78,10 @@
     </main-page>
 </template>
 <script>
+import toExcel from "./export.vue";
 import paginate from "../../components/pagination/TailwindPagination.vue";
 export default {
-    components: { paginate },
+    components: { paginate, toExcel },
     data() {
         return {
             dataTransaksi: [],

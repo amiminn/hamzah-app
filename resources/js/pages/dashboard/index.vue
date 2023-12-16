@@ -7,11 +7,13 @@
             <div class="grid grid-cols-2 sm:xl:grid-cols-4 gap-3">
                 <card>
                     <div class="flex justify-between gap-3">
-                        <img
-                            src="/assets/icon/warning_738884.png"
-                            alt="icon_transaksi"
-                            class="w-20"
-                        />
+                        <div>
+                            <img
+                                src="/assets/icon/project-management_4844342.png"
+                                alt="icon_transaksi"
+                                class="w-20"
+                            />
+                        </div>
                         <div class="grid text-right gap-2">
                             <div class="text-2xl">total transaksi</div>
                             <div class="font-bold text-3xl">
@@ -22,11 +24,13 @@
                 </card>
                 <card>
                     <div class="flex justify-between gap-3">
-                        <img
-                            src="/assets/icon/warning_738884.png"
-                            alt="icon_transaksi"
-                            class="w-20"
-                        />
+                        <div>
+                            <img
+                                src="/assets/icon/cashless-payment_4108843.png"
+                                alt="icon_transaksi"
+                                class="w-20"
+                            />
+                        </div>
                         <div class="grid text-right gap-2">
                             <div class="text-lg">total pendapatan</div>
                             <div class="font-bold text-3xl">
@@ -41,11 +45,13 @@
                 </card>
                 <card>
                     <div class="flex justify-between gap-3">
-                        <img
-                            src="/assets/icon/warning_738884.png"
-                            alt="icon_transaksi"
-                            class="w-20"
-                        />
+                        <div>
+                            <img
+                                src="/assets/icon/categories_6724239.png"
+                                alt="icon_transaksi"
+                                class="w-20"
+                            />
+                        </div>
                         <div class="grid text-right gap-2">
                             <div class="text-lg">pendapatan bulan ini</div>
                             <div class="font-bold text-3xl">
@@ -63,11 +69,13 @@
                 </card>
                 <card>
                     <div class="flex justify-between gap-3">
-                        <img
-                            src="/assets/icon/warning_738884.png"
-                            alt="icon_transaksi"
-                            class="w-20"
-                        />
+                        <div>
+                            <img
+                                src="/assets/icon/dice_7101743.png"
+                                alt="icon_transaksi"
+                                class="w-20"
+                            />
+                        </div>
                         <div class="grid text-right gap-2">
                             <div class="text-lg">jumlah kamar</div>
                             <div class="font-bold text-3xl">

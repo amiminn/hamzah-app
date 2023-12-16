@@ -48,7 +48,7 @@
                                     <span class="sr-only">Open user menu</span>
                                     <img
                                         class="w-8 h-8 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        src="/assets/icon/gamer_1985783.png"
                                         alt="user photo"
                                     />
                                 </button>
