@@ -16,7 +16,9 @@ class TransaksiModel extends Model
 
     protected $casts = [
         'booking_date' => 'array',
-        'jumlah_pembayaran' => 'integer'
+        'jumlah_pembayaran' => 'integer',
+        // 'pelunasan' => 'array',
+        // 'data_villa' => 'array',
     ];
 
     protected static function boot()

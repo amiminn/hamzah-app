@@ -16,6 +16,7 @@ return new class extends Migration
             $table->bigInteger('villa_id')->nullable();
             $table->string('kode_booking')->nullable();
             $table->json('booking_date');
+            $table->integer('hari')->default(0);
             $table->string('nama_customer');
             $table->string('no_hp')->nullable();
             $table->string('email')->nullable();
@@ -24,7 +25,10 @@ return new class extends Migration
             $table->string('invoice');
             $table->integer('harga_asli')->default(0);
             $table->integer('jumlah_pembayaran')->default(0);
+            $table->json('pelunasan')->nullable();
+            $table->integer('breakfast')->default(0);
             $table->boolean('status')->default(0);
+            $table->json('data_villa')->nullable();
             $table->timestamps();
         });
     }

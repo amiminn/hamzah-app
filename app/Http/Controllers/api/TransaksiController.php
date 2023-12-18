@@ -4,7 +4,9 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\TransaksiModel;
+use App\Models\VillaModel;
 use App\Services\Response;
+use Carbon\Carbon;
 use DateTime;
 use Illuminate\Http\Request;
 
@@ -18,15 +20,14 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         try {
-            $checkInDate = new DateTime($request->booking_date['startStr']);
-            $checkOutDate = new DateTime($request->booking_date['endStr']);
-            $interval = $checkInDate->diff($checkOutDate);
-            $jumlahMalam = $interval->format('%a');
-            $data = collect($request->all())->put("harga_asli",  $request->harga_asli * $jumlahMalam);
+            $data = collect($request->all())->put("harga_asli",  $request->harga_asli * $request->hari)
+                ->put("pelunasan", "")
+                ->put("data_villa", VillaModel::find($request->villa_id));
             TransaksiModel::create($data);
+            // return $data;
             return Response::success("Transaksi baru berhasil dibuat.");
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return response($th->getMessage(), 400);
         }
     }
 
@@ -80,9 +81,13 @@ class TransaksiController extends Controller
     public function transaksiLunas($id)
     {
         try {
+            $currentDate = Carbon::now();
             $data = TransaksiModel::find($id);
             $data->update([
-                "jumlah_pembayaran" => $data->harga_asli,
+                "pelunasan" => [
+                    "tanggal" => $currentDate->toDateString(),
+                    "jumlah" => $data->harga_asli - $data->jumlah_pembayaran
+                ],
                 "status" => 1
             ]);
             return Response::success("Transaksi berhasil diupdate.");

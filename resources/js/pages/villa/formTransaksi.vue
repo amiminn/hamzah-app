@@ -18,7 +18,7 @@
                 <alert
                     >Booking selama
                     <span class="font-bold text-xl"
-                        >{{ jumlah_malam }} malam</span
+                        >{{ formData.hari }} malam</span
                     >, check-in
                     <span class="font-bold text-xl">
                         {{ formData.booking_date.startStr }}
@@ -157,13 +157,13 @@ export default {
                 provinsi: null,
                 harga_asli: 0,
                 jumlah_pembayaran: null,
+                hari: this.hitungMalam(
+                    JSON.parse(this.fullDate).startStr,
+                    JSON.parse(this.fullDate).endStr
+                ),
             },
 
             listVilla: [],
-            jumlah_malam: this.hitungMalam(
-                JSON.parse(this.fullDate).startStr,
-                JSON.parse(this.fullDate).endStr
-            ),
         };
     },
     methods: {
@@ -171,7 +171,8 @@ export default {
             try {
                 let res = await axios.post(this.$api.transaksi, this.formData);
                 this.$toast(res.data.msg);
-                this.$router.get("transaksi");
+                console.log(res.data);
+                // this.$router.get("transaksi");
             } catch (error) {
                 console.log(error);
             }
