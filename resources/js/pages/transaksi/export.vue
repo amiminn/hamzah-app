@@ -23,7 +23,7 @@
             </div>
             <div class="grid content-end">
                 <button
-                    @click="exportExcel"
+                    @click="confirmDel"
                     class="text-white bg-emerald-700 px-6 py-2 rounded"
                 >
                     download excel
@@ -33,6 +33,7 @@
     </card>
 </template>
 <script>
+import Swal from "sweetalert2";
 export default {
     data() {
         return {
@@ -41,18 +42,7 @@ export default {
                 endStr: "",
             },
 
-            dataLaporan: [
-                {
-                    id: "1",
-                    name: "Saitama",
-                    age: "32",
-                },
-                {
-                    id: "2",
-                    name: "Genos",
-                    age: "24",
-                },
-            ],
+            dataLaporan: [],
         };
     },
     methods: {
@@ -81,24 +71,45 @@ export default {
             return year + "-" + (month < 10 ? "0" : "") + month + "-01";
         },
 
+        async getDataExcel() {
+            let res = await axios.post("api/export-excel", this.tanggal);
+            this.dataLaporan = res.data;
+        },
+
+        confirmDel() {
+            this.getDataExcel();
+            Swal.fire({
+                title: "Apakah Anda yakin ingin convert data ke excel?",
+                text: "laporan akan terunduh otomatis.",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Ya, unduh!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.exportExcel();
+                }
+            });
+        },
+
         async exportExcel() {
-            console.log(this.tanggal);
-            // const XLSX = await import(
-            //     "https://cdn.sheetjs.com/xlsx-0.19.2/package/xlsx.mjs"
-            // );
+            const XLSX = await import(
+                "https://cdn.sheetjs.com/xlsx-0.19.2/package/xlsx.mjs"
+            );
 
-            // const worksheet = XLSX.utils.json_to_sheet(this.dataLaporan);
+            const worksheet = XLSX.utils.json_to_sheet(this.dataLaporan);
 
-            // const workbook = XLSX.utils.book_new();
-            // XLSX.utils.book_append_sheet(workbook, worksheet, "data Laporan");
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "data Laporan");
 
-            // XLSX.writeFile(
-            //     workbook,
-            //     "Laporan" + this.getTodayDate() + ".xlsx",
-            //     {
-            //         compression: true,
-            //     }
-            // );
+            XLSX.writeFile(
+                workbook,
+                "Laporan villa " + this.getTodayDate() + ".xlsx",
+                {
+                    compression: true,
+                }
+            );
         },
 
         getTodayDate() {

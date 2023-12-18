@@ -40,7 +40,9 @@
                                     {{ d.name }}
                                 </th>
                                 <td class="px-6 py-4">{{ d.email }}</td>
-                                <td class="px-6 py-4">{{ d.role }}</td>
+                                <td class="px-6 py-4">
+                                    {{ $filters.role(d.role) }}
+                                </td>
                                 <td
                                     class="px-6 py-4 font-bold"
                                     :class="

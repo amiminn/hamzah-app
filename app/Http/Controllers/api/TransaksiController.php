@@ -112,4 +112,33 @@ class TransaksiController extends Controller
             return $th->getMessage();
         }
     }
+
+    public function exportexcel(Request $request)
+    {
+        try {
+            return collect(TransaksiModel::whereBetween('created_at', [$request->startStr, $request->endStr])->get())->map(function ($data) {
+                if ($data->jumlah_pembayaran > $data->villa()->first()->harga || $data->jumlah_pembayaran == $data->villa()->first()->harga) {
+                    $lunas = "lunas";
+                } else {
+                    $lunas = "belum lunas";
+                }
+                return [
+                    "nama customer" => $data->nama_customer,
+                    "email" => $data->email,
+                    "no hp" => $data->no_hp,
+                    "alamat" => $data->domisili,
+                    "provinsi" => $data->provinsi,
+                    "DP" => $data->jumlah_pembayaran,
+                    "check in" => $data->booking_date["startStr"],
+                    "check out" => $data->booking_date["endStr"],
+                    "invoice" => $data->invoice,
+                    "villa" => $data->villa()->first()->nama,
+                    "harga villa permalam" => $data->villa()->first()->harga,
+                    "status" => $lunas
+                ];
+            });
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }

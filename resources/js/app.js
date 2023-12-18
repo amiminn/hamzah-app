@@ -81,6 +81,10 @@ createInertiaApp({
                     return "lunas";
                 }
             },
+            role(data) {
+                if (data == 1) return "Admin";
+                if (data == 0) return "Staff";
+            },
         };
 
         app.config.globalProperties.$toast = (msg, icon = "success") => {

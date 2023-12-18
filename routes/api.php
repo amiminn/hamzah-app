@@ -23,9 +23,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get("transaksi-date", [TransaksiController::class, "dateTransaksi"]);
     Route::get("transaksi-lunas={id}", [TransaksiController::class, "transaksiLunas"]);
     Route::get("listvilla", [VillaController::class, "listvilla"]);
+    Route::post("export-excel", [TransaksiController::class, "exportexcel"]);
     Route::apiResource("villa", VillaController::class);
     Route::controller(UserController::class)->prefix("auth/user")->group(function () {
-        Route::get("/", "userAuth");
+        Route::post("/", "userAuth");
         Route::get("update", "updateAuth");
     });
 });
