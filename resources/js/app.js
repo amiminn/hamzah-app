@@ -4,6 +4,9 @@ import "flowbite";
 import VueFeather from "vue-feather";
 import { createApp, h } from "vue";
 import { router, createInertiaApp, Link } from "@inertiajs/vue3";
+import moment from "moment/dist/moment";
+import "moment/dist/locale/id";
+moment.locale("id");
 import Main from "./components/main/main.vue";
 import store from "./store";
 import Card from "./components/inc/card.vue";
@@ -72,11 +75,9 @@ createInertiaApp({
                     floatingPoint: gap,
                 });
             },
-            terbayar(dibayar, nominal) {
-                if (dibayar < nominal) {
+            terbayar(data) {
+                if (data == 0) {
                     return "belum lunas";
-                } else if (dibayar == nominal) {
-                    return "lunas";
                 } else {
                     return "lunas";
                 }
@@ -84,6 +85,9 @@ createInertiaApp({
             role(data) {
                 if (data == 1) return "Admin";
                 if (data == 0) return "Staff";
+            },
+            tanggal(tanggalAwal) {
+                return moment(tanggalAwal, "Y-M-D").format("D MMMM Y");
             },
         };
 

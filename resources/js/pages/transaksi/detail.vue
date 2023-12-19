@@ -32,7 +32,7 @@
                                 type="text"
                                 id="villa"
                                 class="form-input disabled"
-                                v-model="datavilla.nama"
+                                v-model="data_villa.nama"
                             />
                         </div>
                         <div>
@@ -137,9 +137,15 @@
                 </card>
                 <div
                     v-if="statusPembayaran"
-                    class="flex items-center justify-center p-4 mb-4 text-xl border border-green-800 text-green-800 rounded-lg bg-green-50"
+                    class="flex items-center text-center justify-center p-4 mb-4 text-xl border border-green-800 text-green-800 rounded-lg bg-green-50"
                 >
                     status pembayaran telah lunas
+                    <br />
+                    <br />
+                    dibayar:
+                    {{ $filters.harga(dataTransaksi.pelunasan.jumlah) }}
+                    <br />
+                    {{ $filters.tanggal(dataTransaksi.pelunasan.tanggal) }}
                 </div>
                 <card v-if="!statusPembayaran">
                     <alert>
@@ -172,7 +178,7 @@ export default {
             dataTransaksi: {
                 jumlah_pembayaran: 0,
             },
-            datavilla: {},
+            data_villa: {},
             booking_date: {},
         };
     },
@@ -181,7 +187,7 @@ export default {
             try {
                 let res = await axios.get(this.$api.transaksi + "/" + this.id);
                 this.dataTransaksi = res.data;
-                this.datavilla = res.data.datavilla;
+                this.data_villa = res.data.data_villa;
                 this.booking_date = res.data.booking_date;
                 this.statusPembayaran = res.data.status;
                 this.dataTransaksi.jumlah_pembayaran =

@@ -20,11 +20,21 @@ class TransaksiController extends Controller
     public function store(Request $request)
     {
         try {
-            $data = collect($request->all())->put("harga_asli",  $request->harga_asli * $request->hari)
-                ->put("pelunasan", "")
-                ->put("data_villa", VillaModel::find($request->villa_id));
+            $data = [
+                "villa_id" => $request->villa_id,
+                "booking_date" => $request->booking_date,
+                "hari" => $request->hari,
+                "nama_customer" => $request->nama_customer,
+                "no_hp" => $request->no_hp,
+                "email" => $request->email,
+                "domisili" => $request->domisili,
+                "provinsi" => $request->provinsi,
+                "harga_asli" => $request->harga_asli * $request->hari,
+                "jumlah_pembayaran" => $request->jumlah_pembayaran,
+                "breakfast" => $request->breakfast,
+                "data_villa" => VillaModel::find($request->villa_id),
+            ];
             TransaksiModel::create($data);
-            // return $data;
             return Response::success("Transaksi baru berhasil dibuat.");
         } catch (\Throwable $th) {
             return response($th->getMessage(), 400);
@@ -33,8 +43,7 @@ class TransaksiController extends Controller
 
     public function show($id)
     {
-        $res = TransaksiModel::find($id);
-        return collect($res)->put("datavilla", $res->villa()->first());
+        return TransaksiModel::find($id);
     }
 
     public function dateTransaksi(Request $request)
@@ -90,7 +99,7 @@ class TransaksiController extends Controller
                 ],
                 "status" => 1
             ]);
-            return Response::success("Transaksi berhasil diupdate.");
+            return Response::success("Transaksi berhasil dilunasi.");
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

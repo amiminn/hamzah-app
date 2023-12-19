@@ -48,12 +48,7 @@
                             <td>{{ d.provinsi }}</td>
                             <td>{{ $filters.harga(d.jumlah_pembayaran) }}</td>
                             <td>
-                                {{
-                                    $filters.terbayar(
-                                        d.jumlah_pembayaran,
-                                        d.harga_asli
-                                    )
-                                }}
+                                {{ $filters.terbayar(d.status) }}
                             </td>
                             <td>
                                 <Link

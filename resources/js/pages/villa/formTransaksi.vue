@@ -21,11 +21,11 @@
                         >{{ formData.hari }} malam</span
                     >, check-in
                     <span class="font-bold text-xl">
-                        {{ formData.booking_date.startStr }}
+                        {{ $filters.tanggal(formData.booking_date.startStr) }}
                     </span>
                     dan check-out
                     <span class="font-bold text-xl">
-                        {{ formData.booking_date.endStr }}
+                        {{ $filters.tanggal(formData.booking_date.endStr) }}
                     </span>
                 </alert>
                 <warnavilla></warnavilla>
@@ -115,23 +115,32 @@
                                 class="form-input"
                             />
                         </div>
-                        <div class="flex items-center gap-x-3 mb-4">
+                        <div>
+                            <label for="breakfast">Brakfast</label>
                             <input
-                                id="setujuForm"
-                                v-model="setuju"
-                                type="checkbox"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                v-model="formData.breakfast"
+                                type="text"
+                                id="breakfast"
+                                class="form-input"
                             />
-                            <label
-                                for="setujuForm"
-                                class="text-gray-500 italic text-sm"
-                            >
-                                saya setuju dan memahami bahwa informasi yang
-                                saya berikan akan digunakan sesuai dengan
-                                kebijakan privasi dan syarat ketentuan yang
-                                berlaku.
-                            </label>
                         </div>
+                        <div></div>
+                    </div>
+                    <div class="flex items-center gap-x-3 my-4">
+                        <input
+                            id="setujuForm"
+                            v-model="setuju"
+                            type="checkbox"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                        />
+                        <label
+                            for="setujuForm"
+                            class="text-gray-500 italic text-sm"
+                        >
+                            saya setuju dan memahami bahwa informasi yang saya
+                            berikan akan digunakan sesuai dengan kebijakan
+                            privasi dan syarat ketentuan yang berlaku.
+                        </label>
                     </div>
                     <button v-if="setuju" class="btn btn-sky btn-block my-5">
                         submit
@@ -156,6 +165,7 @@ export default {
                 domisili: null,
                 provinsi: null,
                 harga_asli: 0,
+                breakfast: 1,
                 jumlah_pembayaran: null,
                 hari: this.hitungMalam(
                     JSON.parse(this.fullDate).startStr,
@@ -171,8 +181,7 @@ export default {
             try {
                 let res = await axios.post(this.$api.transaksi, this.formData);
                 this.$toast(res.data.msg);
-                console.log(res.data);
-                // this.$router.get("transaksi");
+                this.$router.get("transaksi");
             } catch (error) {
                 console.log(error);
             }
