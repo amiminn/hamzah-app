@@ -109,27 +109,6 @@ createInertiaApp({
                 title: msg,
             });
         };
-
-        app.config.globalProperties.$confirm = () => {
-            Swal.fire({
-                title: "Apakah Anda yakin ingin menghapus data?",
-                text: "Setelah dihapus, data tidak dapat dipulihkan.",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Ya, hapus!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Berhasil!",
-                        text: "data telah terhapus.",
-                        icon: "success",
-                    });
-                }
-            });
-        };
-
         app.use(store);
         app.use(plugin);
         app.mount(el);
