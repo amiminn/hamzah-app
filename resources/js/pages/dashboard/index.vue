@@ -77,7 +77,7 @@
                             />
                         </div>
                         <div class="grid text-right gap-2">
-                            <div class="text-lg">jumlah kamar</div>
+                            <div class="text-lg">jumlah villa</div>
                             <div class="font-bold text-3xl">
                                 {{ dashboard.jumlah_kamar }}
                             </div>

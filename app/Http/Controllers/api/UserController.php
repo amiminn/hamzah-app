@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Services\Response;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -21,9 +22,12 @@ class UserController extends Controller
                 "username" => $request->username,
                 "email" => $request->email,
                 "password" => $request->password,
+                "role" => $request->role,
             ];
 
             User::create($user);
+
+            return Response::success("user baru telah dibuat.");
         } catch (\Throwable $th) {
             return $th->getMessage();
         }
@@ -45,14 +49,11 @@ class UserController extends Controller
                 "name" => $request->name,
                 "username" => $request->username,
                 "email" => $request->email,
-                "password" => $request->password,
-                "phone" => $request->phone,
                 "role" => $request->role,
-                "isAdmin" => $request->isAdmin,
-                "isActive" => $request->isActive,
             ];
 
             User::find($id)->update($user);
+            return Response::success("berhasil update data.");
         } catch (\Throwable $th) {
             return $th->getMessage();
         }

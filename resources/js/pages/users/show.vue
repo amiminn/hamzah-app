@@ -5,7 +5,7 @@
                 <namecard>kelola user</namecard>
             </card>
             <card>
-                <form @submit.prevent="addUser()">
+                <form @submit.prevent="updateUser()">
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <label for="namaUser">nama</label>
@@ -17,6 +17,15 @@
                             />
                         </div>
                         <div>
+                            <label for="username">username</label>
+                            <input
+                                type="text"
+                                class="form-input"
+                                id="username"
+                                v-model="dataUser.username"
+                            />
+                        </div>
+                        <div>
                             <label for="emailUser">email</label>
                             <input
                                 v-model="dataUser.email"
@@ -25,21 +34,17 @@
                                 id="emailUser"
                             />
                         </div>
-                        <div>
-                            <label for="passwordUser">password</label>
-                            <input
-                                type="text"
-                                class="form-input"
-                                id="passwordUser"
-                            />
-                        </div>
+
                         <div>
                             <label for="roleUser">role</label>
-                            <input
-                                type="text"
-                                class="form-input"
+                            <select
+                                v-model="dataUser.role"
                                 id="roleUser"
-                            />
+                                class="form-input"
+                            >
+                                <option value="0" selected>staff</option>
+                                <option value="1">admin</option>
+                            </select>
                         </div>
                     </div>
                     <button
@@ -63,7 +68,13 @@ export default {
     },
     methods: {
         async updateUser() {
-            let res = axios.put();
+            try {
+                let res = await axios.put(
+                    this.$api.users + "/" + this.dataUser.id,
+                    this.dataUser
+                );
+                this.$toast(res.data.msg);
+            } catch (error) {}
         },
     },
     mounted() {
