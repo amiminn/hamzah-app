@@ -4,7 +4,7 @@
             <thead class="text-xs text-white uppercase bg-gray-700">
                 <tr>
                     <th>no</th>
-                    <th>harga</th>
+                    <th>nama</th>
                     <th>warna-primary</th>
                     <th>fasilitas</th>
                     <th>action</th>

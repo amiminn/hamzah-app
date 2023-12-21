@@ -19,6 +19,9 @@
       @endauth
   </script>
     @vite(['resources/js/app.js', 'resources/css/app.css'])
+    {{-- <link rel="stylesheet" href="/build/assets/app-3c9ed82b.css "> --}}
+    {{-- <link rel="stylesheet" href="/build/assets/app-8f296642.css"> --}}
+    {{-- <script src="/build/assets/app-910843ea.js" type="module"></script> --}}
     @inertiaHead
   </head>
   <body class="bg-gray-100">

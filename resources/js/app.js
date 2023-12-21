@@ -41,7 +41,8 @@ createInertiaApp({
         app.component("warnavilla", warnavilla);
         app.component(VueFeather.name, VueFeather);
 
-        app.config.globalProperties.$url = "http://127.0.0.1:8000/";
+        // app.config.globalProperties.$url = "http://127.0.0.1:8000/";
+        app.config.globalProperties.$url = "https://app.hamzahbatik.co.id/";
         app.config.globalProperties.$router = router;
         app.config.globalProperties.$key = {
             uploadJs: "public_12a1ydKBufjwc3sJ9bMrA5r8G5D9",

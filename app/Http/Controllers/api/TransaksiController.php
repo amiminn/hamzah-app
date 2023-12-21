@@ -155,4 +155,13 @@ class TransaksiController extends Controller
             return $th->getMessage();
         }
     }
+
+    public function filter(Request $request)
+    {
+        try {
+            return TransaksiModel::whereBetween('created_at', [$request->startStr, $request->endStr])->paginate(30);
+        } catch (\Throwable $th) {
+            return $th->getMessage();
+        }
+    }
 }

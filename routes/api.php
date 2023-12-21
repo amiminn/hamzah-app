@@ -20,6 +20,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource("users", UserController::class);
     Route::apiResource("transaksi", TransaksiController::class)->only(["index", "store", "update", "destroy", "show"]);
     Route::post("cari-transaksi", [TransaksiController::class, "cari"]);
+    Route::post("filter-transaksi", [TransaksiController::class, "filter"]);
     Route::get("transaksi-date", [TransaksiController::class, "dateTransaksi"]);
     Route::get("transaksi-lunas={id}", [TransaksiController::class, "transaksiLunas"]);
     Route::get("listvilla", [VillaController::class, "listvilla"]);
