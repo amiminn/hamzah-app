@@ -37,8 +37,8 @@ export default {
     data() {
         return {
             form: {
-                username: "amiminn",
-                password: "admin1",
+                username: "",
+                password: "",
                 _token: this.$page.props.csrf_token,
             },
         };
