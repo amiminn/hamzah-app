@@ -131,24 +131,39 @@ class TransaksiController extends Controller
     {
         try {
             return collect(TransaksiModel::whereBetween('created_at', [$request->startStr, $request->endStr])->get())->map(function ($data) {
-                if ($data->jumlah_pembayaran > $data->villa()->first()->harga || $data->jumlah_pembayaran == $data->villa()->first()->harga) {
-                    $lunas = "lunas";
+                if ($data->pelunasan == null) {
+                    $jumlah_pelunasan = "";
+                    $tanggal_pelunasan = "";
                 } else {
-                    $lunas = "belum lunas";
+                    $jumlah_pelunasan = $data->pelunasan["jumlah"];
+                    $tanggal_pelunasan = Carbon::parse($data->pelunasan["tanggal"])->format('d F Y');
                 }
                 return [
-                    "nama customer" => $data->nama_customer,
-                    "email" => $data->email,
-                    "no hp" => $data->no_hp,
-                    "alamat" => $data->domisili,
-                    "provinsi" => $data->provinsi,
-                    "DP" => $data->jumlah_pembayaran,
-                    "check in" => $data->booking_date["startStr"],
-                    "check out" => $data->booking_date["endStr"],
-                    "invoice" => $data->invoice,
-                    "villa" => $data->villa()->first()->nama,
-                    "harga villa permalam" => $data->villa()->first()->harga,
-                    "status" => $lunas
+                    "nama" => $data->nama_customer,
+                    // "email" => $data->email,
+                    // "no hp" => $data->no_hp,
+                    // "alamat" => $data->domisili,
+                    // "provinsi" => $data->provinsi,
+                    // "DP" => $data->jumlah_pembayaran,
+                    "tipe" => $data->data_villa["nama"],
+                    "check in" => Carbon::parse($data->booking_date["startStr"])->format('d F Y'),
+                    "check out" => Carbon::parse($data->booking_date["endStr"])->format('d F Y'),
+                    // "invoice" => $data->invoice,
+                    // "harga villa permalam" => $data->villa()->first()->harga,
+                    "hari" => $data->hari,
+                    "tanggal dp" => Carbon::parse($data->created_at)->format('d F Y'),
+                    "jumlah dp" => $data->jumlah_pembayaran,
+                    "tanggal pelunasan" => $tanggal_pelunasan,
+                    "jumlah pelunasan" => $jumlah_pelunasan,
+                    "penjualan" => $data->harga_asli,
+                    "charge" => 0,
+                    "selisih" => 0,
+                    "pajak final 0,5%" => 0,
+                    "dibayarkan ke villa" => 0,
+                    "repeat" => 1,
+                    "breakfast" => $data->breakfast,
+
+                    // "status" => $lunas
                 ];
             });
         } catch (\Throwable $th) {
