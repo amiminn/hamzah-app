@@ -54,7 +54,7 @@
                                 </button>
                             </div>
                             <div
-                                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
+                                class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow mr-2"
                                 id="dropdown-user"
                             >
                                 <div class="px-4 py-3" role="none">
@@ -62,13 +62,14 @@
                                         class="text-sm text-gray-900"
                                         role="none"
                                     >
-                                        Neil Sims
+                                        {{ name }}
                                     </p>
                                     <p
-                                        class="text-sm font-medium text-gray-900 truncate"
+                                        class="text-sm font-medium text-gray-900 truncate w-36"
                                         role="none"
                                     >
-                                        neil.sims@flowbite.com
+                                        {{ name }}
+                                        <!-- neil.sims@flowbite.com -->
                                     </p>
                                 </div>
                                 <ul class="py-1" role="none">
@@ -101,6 +102,17 @@
     </div>
 </template>
 <script>
-export default {};
+export default {
+    data() {
+        return {
+            name: "",
+            email: "",
+        };
+    },
+    mounted() {
+        this.name = user.name;
+        this.email = user.email;
+    },
+};
 </script>
 <style lang=""></style>
